@@ -1,0 +1,7 @@
+projection CustomerOrderService;
+component  ORDER;
+layer      Base;
+description "";
+
+
+

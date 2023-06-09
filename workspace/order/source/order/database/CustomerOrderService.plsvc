@@ -1,0 +1,173 @@
+-----------------------------------------------------------------------------
+--
+--  Logical unit: CustomerOrderService
+--  Component:    ORDER
+--
+--  IFS Developer Studio Template Version 3.0
+--
+--  Date    Sign    History
+--  ------  ------  ---------------------------------------------------------
+-----------------------------------------------------------------------------
+
+layer Core;
+
+FUNCTION Create_Sf_Customer_Order___ (
+   order_input_ IN Cust_Order_Struct_Rec,
+   order_lines_input_ IN Order_Line_Struct_Arr) RETURN VARCHAR2
+IS
+   attr_                         VARCHAR2(32000);
+   info_                         VARCHAR2(2000);
+   objid_                        VARCHAR2(2000);
+   objversion_                   VARCHAR2(2000);
+   
+   add_info_                         VARCHAR2(2000);
+   add_objid_                        VARCHAR2(2000);
+   add_objversion_                   VARCHAR2(2000);
+   
+   doc_info_                         VARCHAR2(2000);
+   doc_objid_                        VARCHAR2(2000);
+   doc_objversion_                   VARCHAR2(2000);
+   
+   line_info_                         VARCHAR2(2000);
+   line_objid_                        VARCHAR2(2000);
+   line_objversion_                   VARCHAR2(2000);
+   
+   defattr_                         VARCHAR2(32000);
+   error_msg_ VARCHAR2(2000);
+   
+   order_no_ VARCHAR2(20);
+   order_type_ VARCHAR2(5);
+   contract_ VARCHAR2(5);
+   sales_price_ NUMBER;
+   base_sale_unit_price_ NUMBER;
+   base_unit_price_inc_tax_ NUMBER;
+   unit_price_inc_tax_ NUMBER;
+   part_price_ NUMBER;
+   price_source_db_ VARCHAR2(25);
+   note_id_ NUMBER;
+   sales_part_no_ VARCHAR2(25);
+   sales_unit_meas_ VARCHAR2(10);
+   catalog_type_db_ VARCHAR2(4);
+   supply_code_db_ VARCHAR2(3);
+   close_tol_ NUMBER;
+
+BEGIN
+   IF order_input_.Cf_Order_From = 'Salesforce' THEN
+      contract_ := 'PSG';
+   ELSE
+      contract_ := '';
+   END IF;
+
+   IF order_input_.Order_Type = 'PA' OR order_input_.Order_Type = 'WO' OR order_input_.Order_Type = 'FS' THEN
+      order_type_ := order_input_.Order_Type;
+   ELSE
+      order_type_ := '';
+   END IF;   
+   
+	Client_SYS.Clear_Attr(attr_);
+	Customer_Order_API.New__(info_, objid_, objversion_, attr_, 'PREPARE');
+
+   Client_SYS.Add_To_Attr('CUSTOMER_NO', order_input_.Customer_Id, attr_);
+   Client_SYS.Add_To_Attr('ORDER_ID', order_type_, attr_);
+   Client_SYS.Add_To_Attr('CUSTOMER_PO_NO', order_input_.Customer_Po_No, attr_);
+   Client_SYS.Add_To_Attr('STATE', order_input_.Status, attr_);
+   Client_SYS.Add_To_Attr('NOTE_TEXT', order_input_.Notes, attr_);
+   Client_SYS.Add_To_Attr('WANTED_DELIVERY_DATE', order_input_.Wanted_Delivery_Date, attr_);
+   Client_SYS.Add_To_Attr('CUST_REF', order_input_.Reference, attr_);
+   --Mandatory
+   Client_SYS.Add_To_Attr('AUTHORIZE_CODE', order_input_.Coordinator, attr_);
+   Client_SYS.Add_To_Attr('CONTRACT', contract_, attr_);
+   
+   Customer_Order_API.New__(info_, objid_, objversion_, attr_, 'DO');
+   
+   order_no_ := Client_SYS.Get_Item_Value('ORDER_NO', attr_);
+   note_id_ := Client_SYS.Get_Item_Value('NOTE_ID', attr_);
+      
+   --Address Info (Always single occurrence)
+   Client_SYS.Clear_Attr(attr_);
+   Client_SYS.Add_To_Attr('ADDR_FLAG_DB', 'Y', attr_);
+   Client_SYS.Add_To_Attr('ORDER_NO', order_no_, attr_);
+   Client_SYS.Add_To_Attr('ADDRESS1', order_input_.Street, attr_);
+   Client_SYS.Add_To_Attr('CITY', order_input_.City, attr_);
+   Client_SYS.Add_To_Attr('STATE', order_input_.State, attr_);
+   Client_SYS.Add_To_Attr('ZIP_CODE', order_input_.Zip_Code, attr_);
+   Client_SYS.Add_To_Attr('COUNTRY_CODE', order_input_.Country_Code, attr_);
+   Customer_Order_Address_API.Modify__(add_info_, add_objid_, add_objversion_, attr_, 'DO');
+   
+   --Dcoument Text
+   Client_SYS.Clear_Attr(attr_);
+   Client_SYS.Add_To_Attr('OUTPUT_TYPE', 'PICKLIST', attr_);
+   Client_SYS.Add_To_Attr('NOTE_ID', note_id_, attr_);
+   Client_SYS.Add_To_Attr('NOTE_TEXT', order_input_.Document_Text, attr_);
+   Document_Text_API.New__(doc_info_, doc_objid_, doc_objversion_, attr_, 'DO');
+  
+   --Custom Fields
+   Client_SYS.Clear_Attr(attr_);
+   Customer_Order_CFP.Cf_New__(info_, objid_, attr_, '', 'PREPARE');   
+   Client_SYS.Add_To_Attr('CF$_ORDER_FROM', order_input_.Cf_Order_From, attr_);
+   Client_SYS.Add_To_Attr('CF$_SVC_PROD_LINE', order_input_.Cf_Svc_Prod_Line, attr_);
+   Customer_Order_CFP.Cf_New__(info_, objid_, attr_, '', 'DO');
+
+   --Customer Order lines
+   FOR index_ IN order_lines_input_.FIRST..order_lines_input_.LAST LOOP     
+      Client_SYS.Clear_Attr(attr_);
+      Client_SYS.Add_To_Attr('ORDER_NO', order_no_, attr_);
+      Customer_Order_Line_API.New__(line_info_, line_objid_, line_objversion_, attr_, 'PREPARE');
+      Client_SYS.Add_To_Attr('ORDER_NO', order_no_, attr_);
+      --Client_SYS.Add_To_Attr('CATALOG_NO', order_lines_input_(index_).Sales_Part_No, attr_);
+      Client_SYS.Add_To_Attr('BUY_QTY_DUE', order_lines_input_(index_).Sales_Qty, attr_);
+      Client_SYS.Add_To_Attr('SALE_UNIT_PRICE', order_lines_input_(index_).Price, attr_);
+      
+      sales_part_no_ := order_lines_input_(index_).Sales_Part_No;     
+      Client_SYS.Add_To_Attr('ORDER_NO', order_no_, defattr_);
+      Client_SYS.Add_To_Attr('CATALOG_NO', order_lines_input_(index_).Sales_Part_No, defattr_);
+      Client_SYS.Add_To_Attr('BUY_QTY_DUE', order_lines_input_(index_).Sales_Qty, defattr_);
+      Client_SYS.Add_To_Attr('SALE_UNIT_PRICE', order_lines_input_(index_).Price, defattr_);
+      
+      --Get all default values
+      Customer_Order_Line_API.Get_Line_Defaults__(line_info_, defattr_, sales_part_no_, order_no_);
+      
+      --To support replacement part no, add the catalog_no after the default call
+      Client_SYS.Add_To_Attr('CATALOG_NO', sales_part_no_, attr_);
+      
+      sales_unit_meas_ := Client_SYS.Get_Item_Value('SALES_UNIT_MEAS', defattr_);
+      catalog_type_db_ := Client_SYS.Get_Item_Value('CATALOG_TYPE_DB', defattr_);
+      supply_code_db_  := Client_SYS.Get_Item_Value('SUPPLY_CODE_DB', defattr_);
+      close_tol_       := TO_NUMBER(Client_SYS.Get_Item_Value('CLOSE_TOLERANCE', defattr_));
+      base_sale_unit_price_ := TO_NUMBER(Client_SYS.Get_Item_Value('BASE_SALE_UNIT_PRICE', defattr_));
+      base_unit_price_inc_tax_ := TO_NUMBER(Client_SYS.Get_Item_Value('BASE_UNIT_PRICE_INCL_TAX', defattr_));
+      unit_price_inc_tax_ := TO_NUMBER(Client_SYS.Get_Item_Value('UNIT_PRICE_INCL_TAX', defattr_));
+      part_price_ := TO_NUMBER(Client_SYS.Get_Item_Value('PART_PRICE', defattr_));
+      price_source_db_ := Client_SYS.Get_Item_Value('PRICE_SOURCE_DB', defattr_);
+      
+      --Mandatory
+      Client_SYS.Add_To_Attr('SALES_UNIT_MEAS', sales_unit_meas_, attr_);
+      Client_SYS.Add_To_Attr('CATALOG_TYPE_DB', catalog_type_db_, attr_);
+      Client_SYS.Add_To_Attr('SUPPLY_CODE_DB', supply_code_db_, attr_);
+      Client_SYS.Add_To_Attr('CLOSE_TOLERANCE', close_tol_, attr_);
+      
+      --Setting the sales part price to all and hard code price source db
+      --sales_price_ := order_lines_input_(index_).Price;
+      --Client_SYS.Add_To_Attr('BASE_SALE_UNIT_PRICE', sales_price_, attr_);
+      --Client_SYS.Add_To_Attr('BASE_UNIT_PRICE_INCL_TAX', sales_price_, attr_);
+      --Client_SYS.Add_To_Attr('UNIT_PRICE_INCL_TAX', sales_price_, attr_);
+      --Client_SYS.Add_To_Attr('PART_PRICE', 5, attr_);
+      --Client_SYS.Add_To_Attr('PRICE_SOURCE_DB', 'BASE', attr_);
+      --Customer_Order_Line_API.New__(line_info_, line_objid_, line_objversion_, attr_, 'DO');
+      
+      --Setting the prices from default api (If tax is there it will be considered too)
+      Client_SYS.Add_To_Attr('BASE_SALE_UNIT_PRICE', base_sale_unit_price_, attr_);
+      Client_SYS.Add_To_Attr('BASE_UNIT_PRICE_INCL_TAX', base_unit_price_inc_tax_, attr_);
+      Client_SYS.Add_To_Attr('UNIT_PRICE_INCL_TAX', unit_price_inc_tax_, attr_);
+      Client_SYS.Add_To_Attr('PART_PRICE', part_price_, attr_);
+      Client_SYS.Add_To_Attr('PRICE_SOURCE_DB', price_source_db_, attr_);
+      Customer_Order_Line_API.New__(line_info_, line_objid_, line_objversion_, attr_, 'DO');
+      
+   END LOOP;
+
+   RETURN order_no_;
+   EXCEPTION
+   WHEN OTHERS THEN
+      error_msg_ := Error_SYS.Strip_Ora_Error(SQLERRM, SQLCODE, keep_non_fnd_ => FALSE);
+      Error_SYS.Appl_General('IFS_ERROR', error_msg_);
+END Create_Sf_Customer_Order___;

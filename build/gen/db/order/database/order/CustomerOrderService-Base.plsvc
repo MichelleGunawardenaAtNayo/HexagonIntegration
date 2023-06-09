@@ -1,0 +1,430 @@
+-----------------------------------------------------------------------------
+--
+--  Logical unit: CustomerOrderService
+--  Type:         Projection
+--  Component:    ORDER
+--
+--  Template:     3.0
+--  Built by:     IFS Developer Studio
+--
+--  Purpose:      Projection facing PL/SQL Base document
+--
+--  NOTE! Do not edit!! This file is completely generated and will be
+--        overwritten next time the corresponding model is saved.
+-----------------------------------------------------------------------------
+
+layer Base;
+
+-------------------- PUBLIC DECLARATIONS ------------------------------------
+
+TYPE Entity_Dec IS RECORD (
+   etag                           VARCHAR2(100),
+   info                           VARCHAR2(4000),
+   attr                           VARCHAR2(32000));
+
+TYPE Entity_Small_Dec IS RECORD (
+   etag                           VARCHAR2(100),
+   info                           VARCHAR2(4000),
+   attr                           VARCHAR2(4000));
+
+TYPE Entity_Small_Drr      IS TABLE OF Entity_Small_Dec;
+TYPE Entity_Drr      IS TABLE OF Entity_Dec;
+TYPE Objid_Arr       IS TABLE OF VARCHAR2(100);
+TYPE Objid_Art       IS TABLE OF VARCHAR2(100);
+TYPE Empty_Art       IS TABLE OF VARCHAR2(1);
+
+TYPE Alpha_Arr       IS TABLE OF DATE;
+TYPE Alpha_Art       IS TABLE OF DATE;
+TYPE Binary_Arr      IS TABLE OF BLOB;
+TYPE Binary_Art      IS TABLE OF BLOB;
+TYPE Boolean_Arr     IS TABLE OF BOOLEAN;
+TYPE Boolean_Art     IS TABLE OF VARCHAR2(5);
+TYPE Date_Arr        IS TABLE OF DATE;
+TYPE Date_Art        IS TABLE OF DATE;
+TYPE Entity_Arr      IS TABLE OF VARCHAR2(100); --List of objid's
+TYPE Entity_Art      IS TABLE OF VARCHAR2(100); --List of objid's
+TYPE Enumeration_Arr IS TABLE OF VARCHAR2(100);
+TYPE Enumeration_Art IS TABLE OF VARCHAR2(100);
+TYPE GUID_Arr        IS TABLE OF VARCHAR2(100);
+TYPE GUID_Art        IS TABLE OF VARCHAR2(100);
+TYPE Identity_Arr    IS TABLE OF NUMBER;
+TYPE Identity_Art    IS TABLE OF NUMBER;
+TYPE Integer_Arr     IS TABLE OF INTEGER;
+TYPE Integer_Art     IS TABLE OF INTEGER;
+TYPE Long_Text_Arr   IS TABLE OF CLOB;
+TYPE Long_Text_Art   IS TABLE OF CLOB;
+TYPE Lookup_Arr      IS TABLE OF VARCHAR2(100);
+TYPE Lookup_Art      IS TABLE OF VARCHAR2(100);
+TYPE Number_Arr      IS TABLE OF NUMBER;
+TYPE Number_Art      IS TABLE OF NUMBER;
+TYPE Text_Arr        IS TABLE OF VARCHAR2(4000);
+TYPE Text_Art        IS TABLE OF VARCHAR2(4000);
+TYPE Time_Arr        IS TABLE OF DATE;
+TYPE Time_Art        IS TABLE OF DATE;
+TYPE Timestamp_Arr   IS TABLE OF DATE;
+TYPE Timestamp_Art   IS TABLE OF DATE;
+TYPE Stream_Arr      IS TABLE OF BLOB;
+TYPE Stream_Art      IS TABLE OF BLOB;
+
+TYPE Stream_Data_Ret IS RECORD (
+   file_name                           VARCHAR2(100),
+   mime_type                           VARCHAR2(100),
+   stream_data                         BLOB);
+
+TYPE Stream_Data_Art IS TABLE OF Stream_Data_Ret;
+
+TYPE Stream_Data_Rec IS RECORD (
+   file_name                           VARCHAR2(100),
+   mime_type                           VARCHAR2(100),
+   stream_data                         BLOB);
+
+TYPE Stream_Data_Arr IS TABLE OF Stream_Data_Rec;
+
+TYPE Stream_Info_Rec IS RECORD (
+   file_name                           VARCHAR2(100),
+   mime_type                           VARCHAR2(100));
+
+TYPE Stream_Text_Data_Rec IS RECORD (
+   file_name                           VARCHAR2(100),
+   mime_type                           VARCHAR2(100),
+   stream_data                         CLOB);
+
+TYPE Cust_Order_Struct_Ret IS RECORD (
+   customer_id                    VARCHAR2(4000),
+   order_no                       VARCHAR2(4000),
+   order_type                     VARCHAR2(4000),
+   customer_po_no                 VARCHAR2(4000),
+   status                         VARCHAR2(4000),
+   notes                          VARCHAR2(4000),
+   wanted_delivery_date           DATE,
+   street                         VARCHAR2(4000),
+   city                           VARCHAR2(4000),
+   state                          VARCHAR2(4000),
+   zip_code                       VARCHAR2(4000),
+   country_code                   VARCHAR2(4000),
+   document_text                  VARCHAR2(4000),
+   reference                      VARCHAR2(4000),
+   coordinator                    VARCHAR2(4000),
+   cf_svc_prod_line               VARCHAR2(4000),
+   cf_order_from                  VARCHAR2(4000));
+
+TYPE Cust_Order_Struct_Art IS TABLE OF Cust_Order_Struct_Ret;
+
+TYPE Cust_Order_Struct_Rec IS RECORD (
+   customer_id                    VARCHAR2(4000),
+   order_no                       VARCHAR2(4000),
+   order_type                     VARCHAR2(4000),
+   customer_po_no                 VARCHAR2(4000),
+   status                         VARCHAR2(4000),
+   notes                          VARCHAR2(4000),
+   wanted_delivery_date           DATE,
+   street                         VARCHAR2(4000),
+   city                           VARCHAR2(4000),
+   state                          VARCHAR2(4000),
+   zip_code                       VARCHAR2(4000),
+   country_code                   VARCHAR2(4000),
+   document_text                  VARCHAR2(4000),
+   reference                      VARCHAR2(4000),
+   coordinator                    VARCHAR2(4000),
+   cf_svc_prod_line               VARCHAR2(4000),
+   cf_order_from                  VARCHAR2(4000));
+
+TYPE Cust_Order_Struct_Arr IS TABLE OF Cust_Order_Struct_Rec;
+
+TYPE Order_Line_Struct_Ret IS RECORD (
+   order_no                       VARCHAR2(4000),
+   sales_part_no                  VARCHAR2(4000),
+   sales_qty                      VARCHAR2(4000),
+   price                          VARCHAR2(4000),
+   status                         VARCHAR2(4000),
+   tracking_no                    VARCHAR2(4000),
+   promised_delivery_date         DATE);
+
+TYPE Order_Line_Struct_Art IS TABLE OF Order_Line_Struct_Ret;
+
+TYPE Order_Line_Struct_Rec IS RECORD (
+   order_no                       VARCHAR2(4000),
+   sales_part_no                  VARCHAR2(4000),
+   sales_qty                      VARCHAR2(4000),
+   price                          VARCHAR2(4000),
+   status                         VARCHAR2(4000),
+   tracking_no                    VARCHAR2(4000),
+   promised_delivery_date         DATE);
+
+TYPE Order_Line_Struct_Arr IS TABLE OF Order_Line_Struct_Rec;
+
+-------------------- PRIVATE DECLARATIONS -----------------------------------
+
+
+
+-------------------- HELPER METHODS -----------------------------------------
+
+@Final
+FUNCTION Get_Objid_From_Etag___ (
+   etag_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+   delim_pos_ INTEGER := instr(etag_, ':');
+BEGIN
+   RETURN substr(etag_, 4, delim_pos_-4);
+END Get_Objid_From_Etag___;
+
+
+@Final
+FUNCTION Get_Objversion_From_Etag___ (
+   etag_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+   delim_pos_ INTEGER := instr(etag_, ':');
+BEGIN
+   RETURN substr(etag_, delim_pos_+1, length(etag_)-delim_pos_-1);
+END Get_Objversion_From_Etag___;
+
+
+@Final
+FUNCTION Get_Etag___ (
+   objid_      IN VARCHAR2,
+   objversion_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+BEGIN
+   RETURN 'W/"'||objid_||':'||objversion_||'"';
+END Get_Etag___;
+
+
+@Final
+FUNCTION Combine_Value_Unit___ (
+   value_ IN VARCHAR2,
+   unit_  IN VARCHAR2 ) RETURN VARCHAR2
+IS
+BEGIN
+   IF (value_ IS NULL) THEN
+      RETURN NULL;
+   ELSE
+      RETURN value_||'|'||unit_;
+   END IF;
+END Combine_Value_Unit___;
+
+@Final
+PROCEDURE Cf_CRUD___(
+   lu_name_   IN     VARCHAR2,
+   lu_type_   IN     VARCHAR2,
+   info_         OUT VARCHAR2,
+   objid_     IN     VARCHAR2,
+   attr_cf_   IN OUT VARCHAR2,
+   attr_      IN     VARCHAR2,
+   action_    IN     VARCHAR2,
+   operation_ IN     VARCHAR2)
+IS
+BEGIN
+   Custom_Object_Proxy_SYS.Cf_Crud(lu_name_, lu_type_, info_, objid_, attr_cf_, attr_, action_, operation_);
+END Cf_CRUD___;
+
+-------------------- CONVERSION METHODS -------------------------------------
+
+@Final
+FUNCTION To_Ret____ (
+   rec_ IN BOOLEAN ) RETURN VARCHAR2
+IS
+BEGIN
+   RETURN (CASE rec_ WHEN TRUE THEN 'TRUE' WHEN FALSE THEN 'FALSE' ELSE NULL END);
+END To_Ret____;
+
+
+@Final
+FUNCTION To_Ret____ (
+   rec_ IN DATE ) RETURN DATE
+IS
+BEGIN
+   RETURN rec_;
+END To_Ret____;
+
+
+@Final
+FUNCTION To_Ret____ (
+   rec_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+BEGIN
+   RETURN rec_;
+END To_Ret____;
+
+
+@Final
+FUNCTION To_Ret____ (
+   rec_ IN CLOB ) RETURN CLOB
+IS
+BEGIN
+   RETURN rec_;
+END To_Ret____;
+
+
+@Final
+FUNCTION To_Ret____ (
+   rec_ IN BLOB ) RETURN BLOB
+IS
+BEGIN
+   RETURN rec_;
+END To_Ret____;
+
+@Final
+FUNCTION To_Ret____ (
+   rec_ IN Stream_Data_Rec ) RETURN Stream_Data_Ret
+IS
+   ret_ Stream_Data_Ret;
+BEGIN
+   ret_.file_name := To_Ret____(rec_.file_name);
+   ret_.mime_type := To_Ret____(rec_.mime_type);
+   ret_.stream_data := To_Ret____(rec_.stream_data);
+   RETURN ret_;
+END To_Ret____;
+
+FUNCTION To_Ret____ (
+   arr_ IN Stream_Data_Arr ) RETURN Stream_Data_Art
+IS
+   ret_ Stream_Data_Art;
+BEGIN
+      IF (arr_.count > 0) THEN
+         FOR i IN arr_.first .. arr_.last LOOP
+         ret_.extend;
+         ret_(ret_.last) := To_Ret____(arr_(i));
+         END LOOP;
+      END IF;
+      RETURN ret_;
+END To_Ret____;
+
+FUNCTION To_Boolean____ (
+   rec_ IN VARCHAR2 ) RETURN BOOLEAN
+IS
+
+   FUNCTION Base (
+      rec_ IN VARCHAR2 ) RETURN BOOLEAN
+   IS
+   BEGIN
+      RETURN (CASE rec_ WHEN 'TRUE' THEN TRUE WHEN 'FALSE' THEN FALSE ELSE NULL END);
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Boolean____;
+
+FUNCTION To_Boolean_Arr____ (
+   arr_ IN Text_Arr ) RETURN Boolean_Arr
+IS
+
+   FUNCTION Base (
+      arr_ IN Text_Arr ) RETURN Boolean_Arr
+   IS
+      ret_ Boolean_Arr := Boolean_Arr();
+   BEGIN
+      IF (arr_.count > 0) THEN
+         FOR i IN arr_.first .. arr_.last LOOP
+         ret_.extend;
+         ret_(ret_.last) := To_Boolean____(arr_(i));
+         END LOOP;
+      END IF;
+      RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(arr_);
+END To_Boolean_Arr____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN Cust_Order_Struct_Rec ) RETURN Cust_Order_Struct_Ret
+IS
+   ret_ Cust_Order_Struct_Ret;
+BEGIN
+   ret_.customer_id                    := To_Ret____(rec_.customer_id);
+   ret_.order_no                       := To_Ret____(rec_.order_no);
+   ret_.order_type                     := To_Ret____(rec_.order_type);
+   ret_.customer_po_no                 := To_Ret____(rec_.customer_po_no);
+   ret_.status                         := To_Ret____(rec_.status);
+   ret_.notes                          := To_Ret____(rec_.notes);
+   ret_.wanted_delivery_date           := To_Ret____(rec_.wanted_delivery_date);
+   ret_.street                         := To_Ret____(rec_.street);
+   ret_.city                           := To_Ret____(rec_.city);
+   ret_.state                          := To_Ret____(rec_.state);
+   ret_.zip_code                       := To_Ret____(rec_.zip_code);
+   ret_.country_code                   := To_Ret____(rec_.country_code);
+   ret_.document_text                  := To_Ret____(rec_.document_text);
+   ret_.reference                      := To_Ret____(rec_.reference);
+   ret_.coordinator                    := To_Ret____(rec_.coordinator);
+   ret_.cf_svc_prod_line               := To_Ret____(rec_.cf_svc_prod_line);
+   ret_.cf_order_from                  := To_Ret____(rec_.cf_order_from);
+   RETURN ret_;
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   arr_ IN Cust_Order_Struct_Arr ) RETURN Cust_Order_Struct_Art
+IS
+   ret_ Cust_Order_Struct_Art := Cust_Order_Struct_Art();
+BEGIN
+   IF (arr_.count > 0) THEN
+      FOR i IN arr_.first .. arr_.last LOOP
+      ret_.extend;
+      ret_(ret_.last) := To_Ret____(arr_(i));
+      END LOOP;
+   END IF;
+   RETURN ret_;
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN Order_Line_Struct_Rec ) RETURN Order_Line_Struct_Ret
+IS
+   ret_ Order_Line_Struct_Ret;
+BEGIN
+   ret_.order_no                       := To_Ret____(rec_.order_no);
+   ret_.sales_part_no                  := To_Ret____(rec_.sales_part_no);
+   ret_.sales_qty                      := To_Ret____(rec_.sales_qty);
+   ret_.price                          := To_Ret____(rec_.price);
+   ret_.status                         := To_Ret____(rec_.status);
+   ret_.tracking_no                    := To_Ret____(rec_.tracking_no);
+   ret_.promised_delivery_date         := To_Ret____(rec_.promised_delivery_date);
+   RETURN ret_;
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   arr_ IN Order_Line_Struct_Arr ) RETURN Order_Line_Struct_Art
+IS
+   ret_ Order_Line_Struct_Art := Order_Line_Struct_Art();
+BEGIN
+   IF (arr_.count > 0) THEN
+      FOR i IN arr_.first .. arr_.last LOOP
+      ret_.extend;
+      ret_(ret_.last) := To_Ret____(arr_(i));
+      END LOOP;
+   END IF;
+   RETURN ret_;
+END To_Ret____;
+
+
+-------------------- GLOBAL METHODS -----------------------------------------
+@Final
+@UncheckedAccess
+
+@Final
+@UncheckedAccess
+FUNCTION Do_Create_Sf_Customer_Order(order_input_ IN Cust_Order_Struct_Rec, order_lines_input_ IN Order_Line_Struct_Arr, unbound## IN VARCHAR2) RETURN Text_Art
+IS
+   rec_ VARCHAR2(4000);
+   art_ Text_Art := Text_Art();
+BEGIN
+   Log_SYS.Init_Method('Customer_Order_Service_SVC', 'Do_Create_Sf_Customer_Order');
+   rec_ := Create_Sf_Customer_Order___(order_input_, order_lines_input_);
+   art_.extend();
+   art_(1) := rec_;
+   RETURN art_;
+END Do_Create_Sf_Customer_Order;
+
+@ProjectionGenerated
+FUNCTION Create_Sf_Customer_Order___ (
+   order_input_       IN Cust_Order_Struct_Rec,
+   order_lines_input_ IN Order_Line_Struct_Arr ) RETURN VARCHAR2;
+
+
+
+
+-------------------- COMPLEX STRUCTURE METHODS ------------------------------------
+
+

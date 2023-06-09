@@ -1,0 +1,291 @@
+{
+    "name": "CustomerOrderService",
+    "service": "CustomerOrderService.svc",
+    "version": "34097484",
+    "contains": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entityset_Metadata:{
+    "Projection": "CustomerOrderService",
+    "Lu": [
+    ]
+}]#]
+    },
+    "enumerations": {[#[jsoncallback:Custom_Object_Proxy_SYS.Client_Enumeration_Metadata:{
+    "Projection": "CustomerOrderService",
+    "Lu": [
+    ]
+}]#]
+    },
+    "entities": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entity_Type_Metadata:{
+    "Projection": "CustomerOrderService",
+    "Lu": [
+    ]
+}]#]
+    },
+    "structures": {
+        "CustOrderStruct": {
+            "name": "CustOrderStruct",
+            "attributes": {
+                "CustomerId": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "OrderNo": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "OrderType": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "CustomerPoNo": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "Status": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "Notes": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "WantedDeliveryDate": {
+                    "datatype": "Date",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "Street": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "City": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "State": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "ZipCode": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "CountryCode": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "DocumentText": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "Reference": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "Coordinator": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "CfSvcProdLine": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "CfOrderFrom": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                }
+            },
+            "references": {
+            },
+            "arrays": {
+            }
+        },
+        "OrderLineStruct": {
+            "name": "OrderLineStruct",
+            "attributes": {
+                "OrderNo": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "SalesPartNo": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "SalesQty": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "Price": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "Status": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "TrackingNo": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "PromisedDeliveryDate": {
+                    "datatype": "Date",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                }
+            },
+            "references": {
+            },
+            "arrays": {
+            }
+        }
+    },
+    "actions": {
+        "CreateSfCustomerOrder": {
+            "name": "CreateSfCustomerOrder",
+            "ludependencies": [
+            ],
+            "returnType": {
+                "dataType": "Text",
+                "collection": false
+            },
+            "parameters": [
+                {
+                    "Name": "OrderInput",
+                    "DataType": "Structure",
+                    "SubType": "CustOrderStruct",
+                    "Collection": false,
+                    "Nullable": true
+                },
+                {
+                    "Name": "OrderLinesInput",
+                    "DataType": "Structure",
+                    "SubType": "OrderLineStruct",
+                    "Collection": true,
+                    "Nullable": true
+                }
+            ]
+        }[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Action_Metadata:{
+    "Projection": "CustomerOrderService"
+}]#]
+    },
+    "functions": {
+    },
+    "objectconnections": [#[metacallback:Dynamic_Reference_Metadata_API.Get_Json_Entities_:]#]
+}

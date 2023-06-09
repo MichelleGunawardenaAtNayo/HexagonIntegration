@@ -1,0 +1,66 @@
+projection CustomerOrderService;
+component ORDER;
+layer Core;
+description "Includes rest end-points for Customer Order and Orderlines related integrations";
+category Integration;
+
+--------------------------------- FRAGMENTS ---------------------------------
+
+----------------------------- MAIN ENTRY POINTS -----------------------------
+
+
+------------------------------ ENTITY DETAILS -------------------------------
+
+
+------------------------------- ENUMERATIONS --------------------------------
+
+
+---------------------------------- QUERIES ----------------------------------
+
+
+---------------------------------- ACTIONS ----------------------------------
+action CreateSfCustomerOrder Text {
+   initialcheck none;
+   parameter OrderInput Structure(CustOrderStruct);
+   parameter OrderLinesInput List<Structure(OrderLineStruct)>;
+}
+--------------------------------- FUNCTIONS ---------------------------------
+
+
+-------------------------------- STRUCTURES ---------------------------------
+structure CustOrderStruct {
+   attribute CustomerId Text;
+   attribute OrderNo Text;
+   attribute OrderType Text;
+   attribute CustomerPoNo Text;
+   attribute Status Text;
+   attribute Notes Text;
+   attribute WantedDeliveryDate Date;
+   attribute Street Text;
+   attribute City Text;
+   attribute State Text;
+   attribute ZipCode Text;
+   attribute CountryCode Text;
+   attribute DocumentText Text;
+   attribute Reference Text;
+   attribute Coordinator Text;
+   attribute CfSvcProdLine Text;
+   attribute CfOrderFrom Text;
+}
+
+structure OrderLineStruct {
+   attribute OrderNo Text;
+   attribute SalesPartNo Text;
+   attribute SalesQty Text;
+   attribute Price Text;
+   attribute Status Text;
+   attribute TrackingNo Text;
+   attribute PromisedDeliveryDate Date;
+}
+--------------------------------- VIRTUALS ----------------------------------
+
+
+--------------------------------- SUMMARIES ---------------------------------
+
+
+-------------------------------- SINGLETONS ---------------------------------

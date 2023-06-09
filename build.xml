@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+***********************************
+***        GENERATED FILE       ***
+***********************************
+-->
+<project name="HexagonIntegration" default="default" basedir="." xmlns:ear2="http://www.netbeans.org/ns/j2ee-earproject/2">
+    <description>Build, Deploy and Test IFS Services Layer, Web Client and Mobile Apps</description>
+    <import file="nbproject/build-impl.xml"/>
+
+            </project>

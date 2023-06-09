@@ -1,0 +1,1045 @@
+-----------------------------------------------------------------------------
+--
+--  Logical unit: CustomerOrderService
+--  Type:         Projection
+--  Component:    ORDER
+--
+--  Template:     3.0
+--  Built by:     IFS Developer Studio
+--
+--  NOTE! Do not edit!! This file is completely generated and will be
+--        overwritten next time the corresponding model is saved.
+-----------------------------------------------------------------------------
+
+
+--Storing resulting json metadata in database splitted by indivudual objects
+-- [IFS COMPLETE BLOCK DECLAREEND]
+DECLARE
+   projection_ VARCHAR2(250) := 'CustomerOrderService';
+   header_     Model_Design_SYS.Fnd_Model_Design_Rec;
+   json_       VARCHAR2(32767);
+BEGIN
+   header_ := Model_Design_SYS.Prepare_Design_Data_Load('projection', projection_, Model_Design_SYS.SERVER_METADATA,
+      'Includes rest end-points for Customer Order and Orderlines related integrations');
+   json_ := '{"projection": {"Name": "CustomerOrderService","Metadata": {"Version": "[#[generate:version]#]","Description": "Includes rest end-points for Customer Order and Orderlines related integrations","Category": ["Integration"]},"Container": {"EntitySets": [[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Entityset_Metadata:{"Projection": "CustomerOrderService","Lu": []}]#]],"Singletons": [],"Actions": [{"Name": "CreateSfCustomerOrder","DataType": "Text","Collection": false,"Parameters": [{"Name": "OrderInput","DataType": "Structure","SubType": "CustOrderStruct","Collection": false,"Nullable": true},{"Name": "OrderLinesInput","DataType": "Structure","SubType": "OrderLineStruct","Collection": true,"Nullable": true}],"Execute": {"PL-SQL": {"MethodCall": "Customer_Order_Service_SVC.Do_Create_Sf_Customer_Order(:OrderInput, :OrderLinesInput, unbound## => '''')","ReturnType": "Customer_Order_Service_SVC.Text_Art","Bind": [{"Kind": "Parameter","Name": "OrderInput","ImplementationType": "STRUCTURE","SubType": "CUSTOMER_ORDER_SERVICE_SVC.CUST_ORDER_STRUCT_REC"},{"Kind": "Parameter","Name": "OrderLinesInput","ImplementationType": "ARRAY","SubType": "CUSTOMER_ORDER_SERVICE_SVC.ORDER_LINE_STRUCT_ARR"}]}}}[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Action_Metadata:{"Projection":"CustomerOrderService"}]#]],"Functions": []},"Enumerations": [[#[jsoncallback:Custom_Object_Proxy_SYS.Server_Enumeration_Metadata:{"Projection": "CustomerOrderService","Lu": []}]#]],"Structures": [{"Name": "CustOrderStruct","PLSQLRecordName": "CUSTOMER_ORDER_SERVICE_SVC.CUST_ORDER_STRUCT_REC","Attributes": [{"Name": "CustomerId","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "CUSTOMER_ID","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "OrderNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "ORDER_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "OrderType","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "ORDER_TYPE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "CustomerPoNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "CUSTOMER_PO_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Status","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "STATUS","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Notes","DataType": "Text","Collection": false,"Nullable": true,';
+   json_ := json_ || '"AttrName": "NOTES","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "WantedDeliveryDate","DataType": "Date","Collection": false,"Nullable": true,"AttrName": "WANTED_DELIVERY_DATE","Execute": {"SQL": {"ImplementationType": "DATE"}}},{"Name": "Street","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "STREET","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "City","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "CITY","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "State","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "STATE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "ZipCode","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "ZIP_CODE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "CountryCode","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "COUNTRY_CODE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "DocumentText","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "DOCUMENT_TEXT","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Reference","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "REFERENCE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Coordinator","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "COORDINATOR","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "CfSvcProdLine","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "CF_SVC_PROD_LINE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "CfOrderFrom","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "CF_ORDER_FROM","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}}]},{"Name": "OrderLineStruct","PLSQLRecordName": "CUSTOMER_ORDER_SERVICE_SVC.ORDER_LINE_STRUCT_REC","Attributes": [{"Name": "OrderNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "ORDER_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "SalesPartNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "SALES_PART_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "SalesQty","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "SALES_QTY","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Price","DataType": "Text","C';
+   json_ := json_ || 'ollection": false,"Nullable": true,"AttrName": "PRICE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Status","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "STATUS","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "TrackingNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "TRACKING_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "PromisedDeliveryDate","DataType": "Date","Collection": false,"Nullable": true,"AttrName": "PROMISED_DELIVERY_DATE","Execute": {"SQL": {"ImplementationType": "DATE"}}}]},{"Name": "StreamInfoRec","PLSQLRecordName": "CUSTOMER_ORDER_SERVICE_SVC.STREAM_INFO_REC","Attributes": [{"Name": "FileName","DataType": "Text"},{"Name": "MimeType","DataType": "Text"}]},{"Name": "EntityDec","PLSQLRecordName": "CUSTOMER_ORDER_SERVICE_SVC.ENTITY_DEC","Attributes": [{"Name": "ETag","DataType": "Text"},{"Name": "Info","DataType": "Text"},{"Name": "Attr","DataType": "Text"}]}[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Structure_Metadata:{"Projection": "CustomerOrderService","Lu": []}]#]],"Entities": [[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Entity_Type_Metadata:{"Projection": "CustomerOrderService","Lu": []}]#]]}}';
+   Model_Design_SYS.Add_Model_Design_Template(header_, json_);
+   COMMIT;
+END;
+-- [END IFS COMPLETE BLOCK]
+/
+
+-- [IFS COMPLETE BLOCK DECLAREEND]
+DECLARE
+   projection_ VARCHAR2(250) := 'CustomerOrderService';
+   header_     Model_Design_SYS.Fnd_Model_Design_Rec;
+   json_       VARCHAR2(32767);
+BEGIN
+   header_ := Model_Design_SYS.Prepare_Design_Data_Load('projection', projection_, Model_Design_SYS.CLIENT_METADATA, '');
+   json_ := '{"name": "CustomerOrderService","service": "CustomerOrderService.svc","version": "34097484","contains": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entityset_Metadata:{"Projection": "CustomerOrderService","Lu": []}]#]},"enumerations": {[#[jsoncallback:Custom_Object_Proxy_SYS.Client_Enumeration_Metadata:{"Projection": "CustomerOrderService","Lu": []}]#]},"entities": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entity_Type_Metadata:{"Projection": "CustomerOrderService","Lu": []}]#]},"structures": {"CustOrderStruct": {"name": "CustOrderStruct","attributes": {"CustomerId": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"OrderNo": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"OrderType": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"CustomerPoNo": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"Status": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"Notes": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"WantedDeliveryDate": {"datatype": "Date","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"Street": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"City": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"State": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"ZipCode": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"CountryCode": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"DocumentText": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"Reference": {';
+   json_ := json_ || '"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"Coordinator": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"CfSvcProdLine": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"CfOrderFrom": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false}},"references": {},"arrays": {}},"OrderLineStruct": {"name": "OrderLineStruct","attributes": {"OrderNo": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"SalesPartNo": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"SalesQty": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"Price": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"Status": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"TrackingNo": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"PromisedDeliveryDate": {"datatype": "Date","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false}},"references": {},"arrays": {}}},"actions": {"CreateSfCustomerOrder": {"name": "CreateSfCustomerOrder","ludependencies": [],"returnType": {"dataType": "Text","collection": false},"parameters": [{"Name": "OrderInput","DataType": "Structure","SubType": "CustOrderStruct","Collection": false,"Nullable": true},{"Name": "OrderLinesInput","DataType": "Structure","SubType": "OrderLineStruct","Collection": true,"Nullable": true}]}[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Action_Metadata:{"Projection": "CustomerOrderService"}]#]},"functions": {},"objectconnections": [#[metacallback:Dynamic_Reference_Metadata_API.Get_Json_Entities_:]#]}';
+   Model_Design_SYS.Add_Model_Design_Template(header_, json_);
+   COMMIT;
+END;
+-- [END IFS COMPLETE BLOCK]
+/
+
+-- [IFS COMPLETE BLOCK DECLAREEND]
+DECLARE
+   projection_ VARCHAR2(250) := 'CustomerOrderService';
+   header_     Model_Design_SYS.Fnd_Model_Api_Doc_Rec;
+   json_       VARCHAR2(32767);
+BEGIN
+   header_ := Model_Design_SYS.Prepare_Doc_Load('projection', projection_, Model_Design_SYS.SERVER_METADATA, 'Includes rest end-points for Customer Order and Orderlines related integrations');
+   json_ := '{"projection": {"Name": "CustomerOrderService","Metadata": {"Version": "[#[generate:version]#]","Description": "Includes rest end-points for Customer Order and Orderlines related integrations","Category": ["Integration"]},"Container": {"EntitySets": [],"Singletons": [],"Actions": [{"Name": "CreateSfCustomerOrder","DataType": "Text","Collection": false,"Parameters": [{"Name": "OrderInput","DataType": "Structure","SubType": "CustOrderStruct","Collection": false,"Nullable": true},{"Name": "OrderLinesInput","DataType": "Structure","SubType": "OrderLineStruct","Collection": true,"Nullable": true}],"Execute": {"PL-SQL": {"MethodCall": "Customer_Order_Service_SVC.Do_Create_Sf_Customer_Order(:OrderInput, :OrderLinesInput, unbound## => '''')","ReturnType": "Customer_Order_Service_SVC.Text_Art","Bind": [{"Kind": "Parameter","Name": "OrderInput","ImplementationType": "STRUCTURE","SubType": "CUSTOMER_ORDER_SERVICE_SVC.CUST_ORDER_STRUCT_REC"},{"Kind": "Parameter","Name": "OrderLinesInput","ImplementationType": "ARRAY","SubType": "CUSTOMER_ORDER_SERVICE_SVC.ORDER_LINE_STRUCT_ARR"}]}}}],"Functions": []},"Enumerations": [],"Structures": [{"Name": "CustOrderStruct","PLSQLRecordName": "CUSTOMER_ORDER_SERVICE_SVC.CUST_ORDER_STRUCT_REC","Attributes": [{"Name": "CustomerId","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "CUSTOMER_ID","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "OrderNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "ORDER_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "OrderType","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "ORDER_TYPE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "CustomerPoNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "CUSTOMER_PO_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Status","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "STATUS","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Notes","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "NOTES","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "WantedDeliveryDate","DataType": "Date","Collection": false,"Nullable": true,"AttrName": "WANTED_DELIVERY_DATE","Execute": {"SQL": {"ImplementationType": "DATE"}}},{"Name": "Street","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "S';
+   json_ := json_ || 'TREET","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "City","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "CITY","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "State","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "STATE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "ZipCode","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "ZIP_CODE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "CountryCode","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "COUNTRY_CODE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "DocumentText","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "DOCUMENT_TEXT","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Reference","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "REFERENCE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Coordinator","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "COORDINATOR","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "CfSvcProdLine","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "CF_SVC_PROD_LINE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "CfOrderFrom","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "CF_ORDER_FROM","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}}]},{"Name": "OrderLineStruct","PLSQLRecordName": "CUSTOMER_ORDER_SERVICE_SVC.ORDER_LINE_STRUCT_REC","Attributes": [{"Name": "OrderNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "ORDER_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "SalesPartNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "SALES_PART_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "SalesQty","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "SALES_QTY","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Price","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Status","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "STATUS","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "TrackingNo","DataType": "Text","Collection": false,"Nullable": tr';
+   json_ := json_ || 'ue,"AttrName": "TRACKING_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "PromisedDeliveryDate","DataType": "Date","Collection": false,"Nullable": true,"AttrName": "PROMISED_DELIVERY_DATE","Execute": {"SQL": {"ImplementationType": "DATE"}}}]},{"Name": "StreamInfoRec","PLSQLRecordName": "CUSTOMER_ORDER_SERVICE_SVC.STREAM_INFO_REC","Attributes": [{"Name": "FileName","DataType": "Text"},{"Name": "MimeType","DataType": "Text"}]},{"Name": "EntityDec","PLSQLRecordName": "CUSTOMER_ORDER_SERVICE_SVC.ENTITY_DEC","Attributes": [{"Name": "ETag","DataType": "Text"},{"Name": "Info","DataType": "Text"},{"Name": "Attr","DataType": "Text"}]}],"Entities": []}}';
+   Model_Design_SYS.Add_Model_Api_Doc_Template(header_, json_);
+   COMMIT;
+END;
+-- [END IFS COMPLETE BLOCK]
+/
+
+PROMPT Creating Customer_Order_Service_SVC specification
+
+-- [IFS COMPLETE BLOCK PACKAGE Customer_Order_Service_SVC]
+CREATE OR REPLACE PACKAGE Customer_Order_Service_SVC IS
+
+module_  CONSTANT VARCHAR2(25)  := 'ORDER';
+lu_name_ CONSTANT VARCHAR2(250) := 'CustomerOrderService';
+lu_type_ CONSTANT VARCHAR2(25)  := 'Projection';
+
+-----------------------------------------------------------------------------
+---------------------------- PUBLIC DECLARATIONS ----------------------------
+-----------------------------------------------------------------------------
+
+TYPE Entity_Dec IS RECORD (
+   etag                           VARCHAR2(100),
+   info                           VARCHAR2(4000),
+   attr                           VARCHAR2(32000));
+
+TYPE Entity_Small_Dec IS RECORD (
+   etag                           VARCHAR2(100),
+   info                           VARCHAR2(4000),
+   attr                           VARCHAR2(4000));
+
+TYPE Entity_Small_Drr      IS TABLE OF Entity_Small_Dec;
+
+TYPE Entity_Drr      IS TABLE OF Entity_Dec;
+
+TYPE Objid_Arr       IS TABLE OF VARCHAR2(100);
+
+TYPE Objid_Art       IS TABLE OF VARCHAR2(100);
+
+TYPE Empty_Art       IS TABLE OF VARCHAR2(1);
+
+TYPE Alpha_Arr       IS TABLE OF DATE;
+
+TYPE Alpha_Art       IS TABLE OF DATE;
+
+TYPE Binary_Arr      IS TABLE OF BLOB;
+
+TYPE Binary_Art      IS TABLE OF BLOB;
+
+TYPE Boolean_Arr     IS TABLE OF BOOLEAN;
+
+TYPE Boolean_Art     IS TABLE OF VARCHAR2(5);
+
+TYPE Date_Arr        IS TABLE OF DATE;
+
+TYPE Date_Art        IS TABLE OF DATE;
+
+TYPE Entity_Arr      IS TABLE OF VARCHAR2(100); --List of objid's
+
+TYPE Entity_Art      IS TABLE OF VARCHAR2(100); --List of objid's
+
+TYPE Enumeration_Arr IS TABLE OF VARCHAR2(100);
+
+TYPE Enumeration_Art IS TABLE OF VARCHAR2(100);
+
+TYPE GUID_Arr        IS TABLE OF VARCHAR2(100);
+
+TYPE GUID_Art        IS TABLE OF VARCHAR2(100);
+
+TYPE Identity_Arr    IS TABLE OF NUMBER;
+
+TYPE Identity_Art    IS TABLE OF NUMBER;
+
+TYPE Integer_Arr     IS TABLE OF INTEGER;
+
+TYPE Integer_Art     IS TABLE OF INTEGER;
+
+TYPE Long_Text_Arr   IS TABLE OF CLOB;
+
+TYPE Long_Text_Art   IS TABLE OF CLOB;
+
+TYPE Lookup_Arr      IS TABLE OF VARCHAR2(100);
+
+TYPE Lookup_Art      IS TABLE OF VARCHAR2(100);
+
+TYPE Number_Arr      IS TABLE OF NUMBER;
+
+TYPE Number_Art      IS TABLE OF NUMBER;
+
+TYPE Text_Arr        IS TABLE OF VARCHAR2(4000);
+
+TYPE Text_Art        IS TABLE OF VARCHAR2(4000);
+
+TYPE Time_Arr        IS TABLE OF DATE;
+
+TYPE Time_Art        IS TABLE OF DATE;
+
+TYPE Timestamp_Arr   IS TABLE OF DATE;
+
+TYPE Timestamp_Art   IS TABLE OF DATE;
+
+TYPE Stream_Arr      IS TABLE OF BLOB;
+
+TYPE Stream_Art      IS TABLE OF BLOB;
+
+TYPE Stream_Data_Ret IS RECORD (
+   file_name                           VARCHAR2(100),
+   mime_type                           VARCHAR2(100),
+   stream_data                         BLOB);
+
+TYPE Stream_Data_Art IS TABLE OF Stream_Data_Ret;
+
+TYPE Stream_Data_Rec IS RECORD (
+   file_name                           VARCHAR2(100),
+   mime_type                           VARCHAR2(100),
+   stream_data                         BLOB);
+
+TYPE Stream_Data_Arr IS TABLE OF Stream_Data_Rec;
+
+TYPE Stream_Info_Rec IS RECORD (
+   file_name                           VARCHAR2(100),
+   mime_type                           VARCHAR2(100));
+
+TYPE Stream_Text_Data_Rec IS RECORD (
+   file_name                           VARCHAR2(100),
+   mime_type                           VARCHAR2(100),
+   stream_data                         CLOB);
+
+TYPE Cust_Order_Struct_Ret IS RECORD (
+   customer_id                    VARCHAR2(4000),
+   order_no                       VARCHAR2(4000),
+   order_type                     VARCHAR2(4000),
+   customer_po_no                 VARCHAR2(4000),
+   status                         VARCHAR2(4000),
+   notes                          VARCHAR2(4000),
+   wanted_delivery_date           DATE,
+   street                         VARCHAR2(4000),
+   city                           VARCHAR2(4000),
+   state                          VARCHAR2(4000),
+   zip_code                       VARCHAR2(4000),
+   country_code                   VARCHAR2(4000),
+   document_text                  VARCHAR2(4000),
+   reference                      VARCHAR2(4000),
+   coordinator                    VARCHAR2(4000),
+   cf_svc_prod_line               VARCHAR2(4000),
+   cf_order_from                  VARCHAR2(4000));
+
+TYPE Cust_Order_Struct_Art IS TABLE OF Cust_Order_Struct_Ret;
+
+TYPE Cust_Order_Struct_Rec IS RECORD (
+   customer_id                    VARCHAR2(4000),
+   order_no                       VARCHAR2(4000),
+   order_type                     VARCHAR2(4000),
+   customer_po_no                 VARCHAR2(4000),
+   status                         VARCHAR2(4000),
+   notes                          VARCHAR2(4000),
+   wanted_delivery_date           DATE,
+   street                         VARCHAR2(4000),
+   city                           VARCHAR2(4000),
+   state                          VARCHAR2(4000),
+   zip_code                       VARCHAR2(4000),
+   country_code                   VARCHAR2(4000),
+   document_text                  VARCHAR2(4000),
+   reference                      VARCHAR2(4000),
+   coordinator                    VARCHAR2(4000),
+   cf_svc_prod_line               VARCHAR2(4000),
+   cf_order_from                  VARCHAR2(4000));
+
+TYPE Cust_Order_Struct_Arr IS TABLE OF Cust_Order_Struct_Rec;
+
+TYPE Order_Line_Struct_Ret IS RECORD (
+   order_no                       VARCHAR2(4000),
+   sales_part_no                  VARCHAR2(4000),
+   sales_qty                      VARCHAR2(4000),
+   price                          VARCHAR2(4000),
+   status                         VARCHAR2(4000),
+   tracking_no                    VARCHAR2(4000),
+   promised_delivery_date         DATE);
+
+TYPE Order_Line_Struct_Art IS TABLE OF Order_Line_Struct_Ret;
+
+TYPE Order_Line_Struct_Rec IS RECORD (
+   order_no                       VARCHAR2(4000),
+   sales_part_no                  VARCHAR2(4000),
+   sales_qty                      VARCHAR2(4000),
+   price                          VARCHAR2(4000),
+   status                         VARCHAR2(4000),
+   tracking_no                    VARCHAR2(4000),
+   promised_delivery_date         DATE);
+
+TYPE Order_Line_Struct_Arr IS TABLE OF Order_Line_Struct_Rec;
+
+
+-----------------------------------------------------------------------------
+------------------------- METADATA PROVIDER METHODS -------------------------
+-----------------------------------------------------------------------------
+
+FUNCTION Verify_Metadata_Sql_Content_ (
+   metadata_version_ IN VARCHAR2 ) RETURN VARCHAR2;
+
+PROCEDURE Verify_Metadata_Plsql_Content_ (
+   metadata_version_ IN VARCHAR2 );
+
+FUNCTION Get_Metadata_Content_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN CLOB;
+
+FUNCTION Get_Metadata_Version_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN VARCHAR2;
+
+FUNCTION Get_Metadata_Category_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN VARCHAR2;
+
+FUNCTION Get_Metadata_Service_Group_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN VARCHAR2;
+
+-----------------------------------------------------------------------------
+------------------------------- GLOBAL METHODS ------------------------------
+-----------------------------------------------------------------------------
+--@PoReadOnly(Do_Create_Sf_Customer_Order)
+FUNCTION Do_Create_Sf_Customer_Order(order_input_ IN Cust_Order_Struct_Rec, order_lines_input_ IN Order_Line_Struct_Arr, unbound## IN VARCHAR2) RETURN Text_Art;
+
+END Customer_Order_Service_SVC;
+-- [END IFS COMPLETE BLOCK]
+/
+SHOW ERROR
+
+PROMPT Creating Customer_Order_Service_SVC implementation
+
+-- [IFS COMPLETE BLOCK PACKAGEBODY Customer_Order_Service_SVC]
+CREATE OR REPLACE PACKAGE BODY Customer_Order_Service_SVC IS
+
+-----------------------------------------------------------------------------
+---------------------------- PRIVATE DECLARATIONS ---------------------------
+-----------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------
+------------------------- METADATA PROVIDER METHODS -------------------------
+-----------------------------------------------------------------------------
+
+FUNCTION Verify_Metadata_Sql_Content_ (
+   metadata_version_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+BEGIN
+   Verify_Metadata_Plsql_Content_(metadata_version_);
+   RETURN 'OK';
+END Verify_Metadata_Sql_Content_;
+
+
+PROCEDURE Verify_Metadata_Plsql_Content_ (
+   metadata_version_ IN VARCHAR2 )
+IS
+BEGIN
+   IF (metadata_version_ != Get_Metadata_Version_) THEN
+      Raise_Application_Error(-20187, 'OLDMETA: Metadata mismatch, reload with Customer_Order_Service_SVC.Get_Metadata_Content_ and execute again.');
+   END IF;
+END Verify_Metadata_Plsql_Content_;
+
+
+FUNCTION Get_Metadata_Content_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN CLOB
+IS
+BEGIN
+   IF (context_ IS NULL) THEN
+      RETURN Model_Design_SYS.Get_Data_Content_(Model_Design_SYS.SERVER_METADATA, 'projection', 'CustomerOrderService', language_ => Fnd_Session_API.Get_Language);
+   ELSE
+      RETURN Model_Design_SYS.Get_Data_Content_(Model_Design_SYS.SERVER_METADATA, 'projection', 'CustomerOrderService', language_ => Fnd_Session_API.Get_Language, scope_id_ => context_);
+   END IF;
+END Get_Metadata_Content_;
+
+
+FUNCTION Get_Metadata_Category_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN VARCHAR2
+IS
+   projection_category_  VARCHAR2(100);
+BEGIN
+   projection_category_ := 'Integration';
+   RETURN projection_category_;
+END Get_Metadata_Category_;
+
+
+FUNCTION Get_Metadata_Service_Group_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN VARCHAR2
+IS
+   projection_service_group_  VARCHAR2(100);
+BEGIN
+   projection_service_group_ := 'Default';
+   RETURN projection_service_group_;
+END Get_Metadata_Service_Group_;
+
+
+FUNCTION Get_Metadata_Version_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN VARCHAR2
+IS
+BEGIN
+   RETURN Model_Design_SYS.Get_Data_Version_(Model_Design_SYS.SERVER_METADATA, 'projection', 'CustomerOrderService');
+END Get_Metadata_Version_;
+
+
+-----------------------------------------------------------------------------
+--------------------- IMPLEMENTATION METHOD DECLARATIONS --------------------
+-----------------------------------------------------------------------------
+
+FUNCTION Get_Objid_From_Etag___ (
+   etag_ IN VARCHAR2 ) RETURN VARCHAR2;
+
+FUNCTION Get_Objversion_From_Etag___ (
+   etag_ IN VARCHAR2 ) RETURN VARCHAR2;
+
+FUNCTION Get_Etag___ (
+   objid_      IN VARCHAR2,
+   objversion_ IN VARCHAR2 ) RETURN VARCHAR2;
+
+FUNCTION Combine_Value_Unit___ (
+   value_ IN VARCHAR2,
+   unit_  IN VARCHAR2 ) RETURN VARCHAR2;
+
+PROCEDURE Cf_CRUD___(
+   lu_name_   IN     VARCHAR2,
+   lu_type_   IN     VARCHAR2,
+   info_         OUT VARCHAR2,
+   objid_     IN     VARCHAR2,
+   attr_cf_   IN OUT NOCOPY VARCHAR2,
+   attr_      IN     VARCHAR2,
+   action_    IN     VARCHAR2,
+   operation_ IN     VARCHAR2);
+
+FUNCTION To_Ret____ (
+   rec_ IN BOOLEAN ) RETURN VARCHAR2;
+
+FUNCTION To_Ret____ (
+   rec_ IN DATE ) RETURN DATE;
+
+FUNCTION To_Ret____ (
+   rec_ IN VARCHAR2 ) RETURN VARCHAR2;
+
+FUNCTION To_Ret____ (
+   rec_ IN CLOB ) RETURN CLOB;
+
+FUNCTION To_Ret____ (
+   rec_ IN BLOB ) RETURN BLOB;
+
+FUNCTION To_Ret____ (
+   rec_ IN Stream_Data_Rec ) RETURN Stream_Data_Ret;
+
+FUNCTION To_Ret____ (
+   arr_ IN Stream_Data_Arr ) RETURN Stream_Data_Art;
+
+FUNCTION To_Ret____ (
+   rec_ IN Cust_Order_Struct_Rec ) RETURN Cust_Order_Struct_Ret;
+
+FUNCTION To_Ret____ (
+   arr_ IN Cust_Order_Struct_Arr ) RETURN Cust_Order_Struct_Art;
+
+FUNCTION To_Ret____ (
+   rec_ IN Order_Line_Struct_Rec ) RETURN Order_Line_Struct_Ret;
+
+FUNCTION To_Ret____ (
+   arr_ IN Order_Line_Struct_Arr ) RETURN Order_Line_Struct_Art;
+
+FUNCTION To_Boolean____ (
+   rec_ IN VARCHAR2 ) RETURN BOOLEAN;
+
+FUNCTION To_Boolean_Arr____ (
+   arr_ IN Text_Arr ) RETURN Boolean_Arr;
+
+FUNCTION Create_Sf_Customer_Order___ (
+   order_input_ IN Cust_Order_Struct_Rec,
+   order_lines_input_ IN Order_Line_Struct_Arr) RETURN VARCHAR2;
+
+-----------------------------------------------------------------------------
+-------------------- GLOBAL METHODS -----------------------------------------
+-----------------------------------------------------------------------------
+
+--@IgnoreMissingSysinit
+FUNCTION Do_Create_Sf_Customer_Order(order_input_ IN Cust_Order_Struct_Rec, order_lines_input_ IN Order_Line_Struct_Arr, unbound## IN VARCHAR2) RETURN Text_Art
+IS
+   
+   FUNCTION Base(order_input_ IN Cust_Order_Struct_Rec, order_lines_input_ IN Order_Line_Struct_Arr, unbound## IN VARCHAR2) RETURN Text_Art
+   IS
+      rec_ VARCHAR2(4000);
+      art_ Text_Art := Text_Art();
+   BEGIN
+      Log_SYS.Init_Method('Customer_Order_Service_SVC', 'Do_Create_Sf_Customer_Order');
+      rec_ := Create_Sf_Customer_Order___(order_input_, order_lines_input_);
+      art_.extend();
+      art_(1) := rec_;
+      RETURN art_;
+   END Base;
+
+BEGIN
+   RETURN Base(order_input_, order_lines_input_, unbound##);
+END Do_Create_Sf_Customer_Order;
+
+-----------------------------------------------------------------------------
+-------------------- HELPER METHODS -----------------------------------------
+-----------------------------------------------------------------------------
+
+FUNCTION Get_Objid_From_Etag___ (
+   etag_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+   
+   FUNCTION Base (
+      etag_ IN VARCHAR2 ) RETURN VARCHAR2
+   IS
+      delim_pos_ INTEGER := instr(etag_, ':');
+   BEGIN
+      RETURN substr(etag_, 4, delim_pos_-4);
+   END Base;
+
+BEGIN
+   RETURN Base(etag_);
+END Get_Objid_From_Etag___;
+
+
+FUNCTION Get_Objversion_From_Etag___ (
+   etag_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+   
+   FUNCTION Base (
+      etag_ IN VARCHAR2 ) RETURN VARCHAR2
+   IS
+      delim_pos_ INTEGER := instr(etag_, ':');
+   BEGIN
+      RETURN substr(etag_, delim_pos_+1, length(etag_)-delim_pos_-1);
+   END Base;
+
+BEGIN
+   RETURN Base(etag_);
+END Get_Objversion_From_Etag___;
+
+
+FUNCTION Get_Etag___ (
+   objid_      IN VARCHAR2,
+   objversion_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+   
+   FUNCTION Base (
+      objid_      IN VARCHAR2,
+      objversion_ IN VARCHAR2 ) RETURN VARCHAR2
+   IS
+   BEGIN
+      RETURN 'W/"'||objid_||':'||objversion_||'"';
+   END Base;
+
+BEGIN
+   RETURN Base(objid_, objversion_);
+END Get_Etag___;
+
+
+FUNCTION Combine_Value_Unit___ (
+   value_ IN VARCHAR2,
+   unit_  IN VARCHAR2 ) RETURN VARCHAR2
+IS
+   
+   FUNCTION Base (
+      value_ IN VARCHAR2,
+      unit_  IN VARCHAR2 ) RETURN VARCHAR2
+   IS
+   BEGIN
+      IF (value_ IS NULL) THEN
+         RETURN NULL;
+      ELSE
+         RETURN value_||'|'||unit_;
+      END IF;
+   END Base;
+
+BEGIN
+   RETURN Base(value_, unit_);
+END Combine_Value_Unit___;
+
+
+PROCEDURE Cf_CRUD___(
+   lu_name_   IN     VARCHAR2,
+   lu_type_   IN     VARCHAR2,
+   info_         OUT VARCHAR2,
+   objid_     IN     VARCHAR2,
+   attr_cf_   IN OUT NOCOPY VARCHAR2,
+   attr_      IN     VARCHAR2,
+   action_    IN     VARCHAR2,
+   operation_ IN     VARCHAR2)
+IS
+   
+   PROCEDURE Base(
+      lu_name_   IN     VARCHAR2,
+      lu_type_   IN     VARCHAR2,
+      info_         OUT VARCHAR2,
+      objid_     IN     VARCHAR2,
+      attr_cf_   IN OUT NOCOPY VARCHAR2,
+      attr_      IN     VARCHAR2,
+      action_    IN     VARCHAR2,
+      operation_ IN     VARCHAR2)
+   IS
+   BEGIN
+      Custom_Object_Proxy_SYS.Cf_Crud(lu_name_, lu_type_, info_, objid_, attr_cf_, attr_, action_, operation_);
+   END Base;
+
+BEGIN
+   Base(lu_name_, lu_type_, info_, objid_, attr_cf_, attr_, action_, operation_);
+END Cf_CRUD___;
+
+-----------------------------------------------------------------------------
+-------------------- CONVERSION METHODS -------------------------------------
+-----------------------------------------------------------------------------
+
+FUNCTION To_Ret____ (
+   rec_ IN BOOLEAN ) RETURN VARCHAR2
+IS
+   
+   FUNCTION Base (
+      rec_ IN BOOLEAN ) RETURN VARCHAR2
+   IS
+   BEGIN
+      RETURN (CASE rec_ WHEN TRUE THEN 'TRUE' WHEN FALSE THEN 'FALSE' ELSE NULL END);
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN DATE ) RETURN DATE
+IS
+   
+   FUNCTION Base (
+      rec_ IN DATE ) RETURN DATE
+   IS
+   BEGIN
+      RETURN rec_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+   
+   FUNCTION Base (
+      rec_ IN VARCHAR2 ) RETURN VARCHAR2
+   IS
+   BEGIN
+      RETURN rec_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN CLOB ) RETURN CLOB
+IS
+   
+   FUNCTION Base (
+      rec_ IN CLOB ) RETURN CLOB
+   IS
+   BEGIN
+      RETURN rec_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN BLOB ) RETURN BLOB
+IS
+   
+   FUNCTION Base (
+      rec_ IN BLOB ) RETURN BLOB
+   IS
+   BEGIN
+      RETURN rec_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN Stream_Data_Rec ) RETURN Stream_Data_Ret
+IS
+   
+   FUNCTION Base (
+      rec_ IN Stream_Data_Rec ) RETURN Stream_Data_Ret
+   IS
+      ret_ Stream_Data_Ret;
+   BEGIN
+      ret_.file_name := To_Ret____(rec_.file_name);
+      ret_.mime_type := To_Ret____(rec_.mime_type);
+      ret_.stream_data := To_Ret____(rec_.stream_data);
+      RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   arr_ IN Stream_Data_Arr ) RETURN Stream_Data_Art
+IS
+   
+   FUNCTION Base (
+      arr_ IN Stream_Data_Arr ) RETURN Stream_Data_Art
+   IS
+      ret_ Stream_Data_Art;
+   BEGIN
+         IF (arr_.count > 0) THEN
+            FOR i IN arr_.first .. arr_.last LOOP
+            ret_.extend;
+            ret_(ret_.last) := To_Ret____(arr_(i));
+            END LOOP;
+         END IF;
+         RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(arr_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN Cust_Order_Struct_Rec ) RETURN Cust_Order_Struct_Ret
+IS
+   
+   FUNCTION Base (
+      rec_ IN Cust_Order_Struct_Rec ) RETURN Cust_Order_Struct_Ret
+   IS
+      ret_ Cust_Order_Struct_Ret;
+   BEGIN
+      ret_.customer_id                    := To_Ret____(rec_.customer_id);
+      ret_.order_no                       := To_Ret____(rec_.order_no);
+      ret_.order_type                     := To_Ret____(rec_.order_type);
+      ret_.customer_po_no                 := To_Ret____(rec_.customer_po_no);
+      ret_.status                         := To_Ret____(rec_.status);
+      ret_.notes                          := To_Ret____(rec_.notes);
+      ret_.wanted_delivery_date           := To_Ret____(rec_.wanted_delivery_date);
+      ret_.street                         := To_Ret____(rec_.street);
+      ret_.city                           := To_Ret____(rec_.city);
+      ret_.state                          := To_Ret____(rec_.state);
+      ret_.zip_code                       := To_Ret____(rec_.zip_code);
+      ret_.country_code                   := To_Ret____(rec_.country_code);
+      ret_.document_text                  := To_Ret____(rec_.document_text);
+      ret_.reference                      := To_Ret____(rec_.reference);
+      ret_.coordinator                    := To_Ret____(rec_.coordinator);
+      ret_.cf_svc_prod_line               := To_Ret____(rec_.cf_svc_prod_line);
+      ret_.cf_order_from                  := To_Ret____(rec_.cf_order_from);
+      RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   arr_ IN Cust_Order_Struct_Arr ) RETURN Cust_Order_Struct_Art
+IS
+   
+   FUNCTION Base (
+      arr_ IN Cust_Order_Struct_Arr ) RETURN Cust_Order_Struct_Art
+   IS
+      ret_ Cust_Order_Struct_Art := Cust_Order_Struct_Art();
+   BEGIN
+      IF (arr_.count > 0) THEN
+         FOR i IN arr_.first .. arr_.last LOOP
+         ret_.extend;
+         ret_(ret_.last) := To_Ret____(arr_(i));
+         END LOOP;
+      END IF;
+      RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(arr_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN Order_Line_Struct_Rec ) RETURN Order_Line_Struct_Ret
+IS
+   
+   FUNCTION Base (
+      rec_ IN Order_Line_Struct_Rec ) RETURN Order_Line_Struct_Ret
+   IS
+      ret_ Order_Line_Struct_Ret;
+   BEGIN
+      ret_.order_no                       := To_Ret____(rec_.order_no);
+      ret_.sales_part_no                  := To_Ret____(rec_.sales_part_no);
+      ret_.sales_qty                      := To_Ret____(rec_.sales_qty);
+      ret_.price                          := To_Ret____(rec_.price);
+      ret_.status                         := To_Ret____(rec_.status);
+      ret_.tracking_no                    := To_Ret____(rec_.tracking_no);
+      ret_.promised_delivery_date         := To_Ret____(rec_.promised_delivery_date);
+      RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   arr_ IN Order_Line_Struct_Arr ) RETURN Order_Line_Struct_Art
+IS
+   
+   FUNCTION Base (
+      arr_ IN Order_Line_Struct_Arr ) RETURN Order_Line_Struct_Art
+   IS
+      ret_ Order_Line_Struct_Art := Order_Line_Struct_Art();
+   BEGIN
+      IF (arr_.count > 0) THEN
+         FOR i IN arr_.first .. arr_.last LOOP
+         ret_.extend;
+         ret_(ret_.last) := To_Ret____(arr_(i));
+         END LOOP;
+      END IF;
+      RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(arr_);
+END To_Ret____;
+
+
+FUNCTION To_Boolean____ (
+   rec_ IN VARCHAR2 ) RETURN BOOLEAN
+IS
+   
+   FUNCTION Base (
+      rec_ IN VARCHAR2 ) RETURN BOOLEAN
+   IS
+   
+      FUNCTION Base (
+         rec_ IN VARCHAR2 ) RETURN BOOLEAN
+      IS
+      BEGIN
+         RETURN (CASE rec_ WHEN 'TRUE' THEN TRUE WHEN 'FALSE' THEN FALSE ELSE NULL END);
+      END Base;
+   
+   BEGIN
+      RETURN Base(rec_);
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Boolean____;
+
+
+FUNCTION To_Boolean_Arr____ (
+   arr_ IN Text_Arr ) RETURN Boolean_Arr
+IS
+   
+   FUNCTION Base (
+      arr_ IN Text_Arr ) RETURN Boolean_Arr
+   IS
+   
+      FUNCTION Base (
+         arr_ IN Text_Arr ) RETURN Boolean_Arr
+      IS
+         ret_ Boolean_Arr := Boolean_Arr();
+      BEGIN
+         IF (arr_.count > 0) THEN
+            FOR i IN arr_.first .. arr_.last LOOP
+            ret_.extend;
+            ret_(ret_.last) := To_Boolean____(arr_(i));
+            END LOOP;
+         END IF;
+         RETURN ret_;
+      END Base;
+   
+   BEGIN
+      RETURN Base(arr_);
+   END Base;
+
+BEGIN
+   RETURN Base(arr_);
+END To_Boolean_Arr____;
+
+-----------------------------------------------------------------------------
+-------------------- TOP ----------------------------------------------------
+-----------------------------------------------------------------------------
+
+FUNCTION Create_Sf_Customer_Order___ (
+   order_input_ IN Cust_Order_Struct_Rec,
+   order_lines_input_ IN Order_Line_Struct_Arr) RETURN VARCHAR2
+IS
+   
+   FUNCTION Core_Projection_CustomerOrderService (
+      order_input_ IN Cust_Order_Struct_Rec,
+      order_lines_input_ IN Order_Line_Struct_Arr) RETURN VARCHAR2
+   IS
+      attr_                         VARCHAR2(32000);
+      info_                         VARCHAR2(2000);
+      objid_                        VARCHAR2(2000);
+      objversion_                   VARCHAR2(2000);
+      
+      add_info_                         VARCHAR2(2000);
+      add_objid_                        VARCHAR2(2000);
+      add_objversion_                   VARCHAR2(2000);
+      
+      doc_info_                         VARCHAR2(2000);
+      doc_objid_                        VARCHAR2(2000);
+      doc_objversion_                   VARCHAR2(2000);
+      
+      line_info_                         VARCHAR2(2000);
+      line_objid_                        VARCHAR2(2000);
+      line_objversion_                   VARCHAR2(2000);
+      
+      defattr_                         VARCHAR2(32000);
+      error_msg_ VARCHAR2(2000);
+      
+      order_no_ VARCHAR2(20);
+      order_type_ VARCHAR2(5);
+      contract_ VARCHAR2(5);
+      sales_price_ NUMBER;
+      base_sale_unit_price_ NUMBER;
+      base_unit_price_inc_tax_ NUMBER;
+      unit_price_inc_tax_ NUMBER;
+      part_price_ NUMBER;
+      price_source_db_ VARCHAR2(25);
+      note_id_ NUMBER;
+      sales_part_no_ VARCHAR2(25);
+      sales_unit_meas_ VARCHAR2(10);
+      catalog_type_db_ VARCHAR2(4);
+      supply_code_db_ VARCHAR2(3);
+      close_tol_ NUMBER;
+   
+   BEGIN
+      IF order_input_.Cf_Order_From = 'Salesforce' THEN
+         contract_ := 'PSG';
+      ELSE
+         contract_ := '';
+      END IF;
+   
+      IF order_input_.Order_Type = 'PA' OR order_input_.Order_Type = 'WO' OR order_input_.Order_Type = 'FS' THEN
+         order_type_ := order_input_.Order_Type;
+      ELSE
+         order_type_ := '';
+      END IF;   
+      
+   	Client_SYS.Clear_Attr(attr_);
+   	Customer_Order_API.New__(info_, objid_, objversion_, attr_, 'PREPARE');
+   
+      Client_SYS.Add_To_Attr('CUSTOMER_NO', order_input_.Customer_Id, attr_);
+      Client_SYS.Add_To_Attr('ORDER_ID', order_type_, attr_);
+      Client_SYS.Add_To_Attr('CUSTOMER_PO_NO', order_input_.Customer_Po_No, attr_);
+      Client_SYS.Add_To_Attr('STATE', order_input_.Status, attr_);
+      Client_SYS.Add_To_Attr('NOTE_TEXT', order_input_.Notes, attr_);
+      Client_SYS.Add_To_Attr('WANTED_DELIVERY_DATE', order_input_.Wanted_Delivery_Date, attr_);
+      Client_SYS.Add_To_Attr('CUST_REF', order_input_.Reference, attr_);
+      --Mandatory
+      Client_SYS.Add_To_Attr('AUTHORIZE_CODE', order_input_.Coordinator, attr_);
+      Client_SYS.Add_To_Attr('CONTRACT', contract_, attr_);
+      
+      Customer_Order_API.New__(info_, objid_, objversion_, attr_, 'DO');
+      
+      order_no_ := Client_SYS.Get_Item_Value('ORDER_NO', attr_);
+      note_id_ := Client_SYS.Get_Item_Value('NOTE_ID', attr_);
+         
+      --Address Info (Always single occurrence)
+      Client_SYS.Clear_Attr(attr_);
+      Client_SYS.Add_To_Attr('ADDR_FLAG_DB', 'Y', attr_);
+      Client_SYS.Add_To_Attr('ORDER_NO', order_no_, attr_);
+      Client_SYS.Add_To_Attr('ADDRESS1', order_input_.Street, attr_);
+      Client_SYS.Add_To_Attr('CITY', order_input_.City, attr_);
+      Client_SYS.Add_To_Attr('STATE', order_input_.State, attr_);
+      Client_SYS.Add_To_Attr('ZIP_CODE', order_input_.Zip_Code, attr_);
+      Client_SYS.Add_To_Attr('COUNTRY_CODE', order_input_.Country_Code, attr_);
+      Customer_Order_Address_API.Modify__(add_info_, add_objid_, add_objversion_, attr_, 'DO');
+      
+      --Dcoument Text
+      Client_SYS.Clear_Attr(attr_);
+      Client_SYS.Add_To_Attr('OUTPUT_TYPE', 'PICKLIST', attr_);
+      Client_SYS.Add_To_Attr('NOTE_ID', note_id_, attr_);
+      Client_SYS.Add_To_Attr('NOTE_TEXT', order_input_.Document_Text, attr_);
+      Document_Text_API.New__(doc_info_, doc_objid_, doc_objversion_, attr_, 'DO');
+     
+      --Custom Fields
+      Client_SYS.Clear_Attr(attr_);
+      Customer_Order_CFP.Cf_New__(info_, objid_, attr_, '', 'PREPARE');   
+      Client_SYS.Add_To_Attr('CF$_ORDER_FROM', order_input_.Cf_Order_From, attr_);
+      Client_SYS.Add_To_Attr('CF$_SVC_PROD_LINE', order_input_.Cf_Svc_Prod_Line, attr_);
+      Customer_Order_CFP.Cf_New__(info_, objid_, attr_, '', 'DO');
+   
+      --Customer Order lines
+      FOR index_ IN order_lines_input_.FIRST..order_lines_input_.LAST LOOP     
+         Client_SYS.Clear_Attr(attr_);
+         Client_SYS.Add_To_Attr('ORDER_NO', order_no_, attr_);
+         Customer_Order_Line_API.New__(line_info_, line_objid_, line_objversion_, attr_, 'PREPARE');
+         Client_SYS.Add_To_Attr('ORDER_NO', order_no_, attr_);
+         --Client_SYS.Add_To_Attr('CATALOG_NO', order_lines_input_(index_).Sales_Part_No, attr_);
+         Client_SYS.Add_To_Attr('BUY_QTY_DUE', order_lines_input_(index_).Sales_Qty, attr_);
+         Client_SYS.Add_To_Attr('SALE_UNIT_PRICE', order_lines_input_(index_).Price, attr_);
+         
+         sales_part_no_ := order_lines_input_(index_).Sales_Part_No;     
+         Client_SYS.Add_To_Attr('ORDER_NO', order_no_, defattr_);
+         Client_SYS.Add_To_Attr('CATALOG_NO', order_lines_input_(index_).Sales_Part_No, defattr_);
+         Client_SYS.Add_To_Attr('BUY_QTY_DUE', order_lines_input_(index_).Sales_Qty, defattr_);
+         Client_SYS.Add_To_Attr('SALE_UNIT_PRICE', order_lines_input_(index_).Price, defattr_);
+         
+         --Get all default values
+         Customer_Order_Line_API.Get_Line_Defaults__(line_info_, defattr_, sales_part_no_, order_no_);
+         
+         --To support replacement part no, add the catalog_no after the default call
+         Client_SYS.Add_To_Attr('CATALOG_NO', sales_part_no_, attr_);
+         
+         sales_unit_meas_ := Client_SYS.Get_Item_Value('SALES_UNIT_MEAS', defattr_);
+         catalog_type_db_ := Client_SYS.Get_Item_Value('CATALOG_TYPE_DB', defattr_);
+         supply_code_db_  := Client_SYS.Get_Item_Value('SUPPLY_CODE_DB', defattr_);
+         close_tol_       := TO_NUMBER(Client_SYS.Get_Item_Value('CLOSE_TOLERANCE', defattr_));
+         base_sale_unit_price_ := TO_NUMBER(Client_SYS.Get_Item_Value('BASE_SALE_UNIT_PRICE', defattr_));
+         base_unit_price_inc_tax_ := TO_NUMBER(Client_SYS.Get_Item_Value('BASE_UNIT_PRICE_INCL_TAX', defattr_));
+         unit_price_inc_tax_ := TO_NUMBER(Client_SYS.Get_Item_Value('UNIT_PRICE_INCL_TAX', defattr_));
+         part_price_ := TO_NUMBER(Client_SYS.Get_Item_Value('PART_PRICE', defattr_));
+         price_source_db_ := Client_SYS.Get_Item_Value('PRICE_SOURCE_DB', defattr_);
+         
+         --Mandatory
+         Client_SYS.Add_To_Attr('SALES_UNIT_MEAS', sales_unit_meas_, attr_);
+         Client_SYS.Add_To_Attr('CATALOG_TYPE_DB', catalog_type_db_, attr_);
+         Client_SYS.Add_To_Attr('SUPPLY_CODE_DB', supply_code_db_, attr_);
+         Client_SYS.Add_To_Attr('CLOSE_TOLERANCE', close_tol_, attr_);
+         
+         --Setting the sales part price to all and hard code price source db
+         --sales_price_ := order_lines_input_(index_).Price;
+         --Client_SYS.Add_To_Attr('BASE_SALE_UNIT_PRICE', sales_price_, attr_);
+         --Client_SYS.Add_To_Attr('BASE_UNIT_PRICE_INCL_TAX', sales_price_, attr_);
+         --Client_SYS.Add_To_Attr('UNIT_PRICE_INCL_TAX', sales_price_, attr_);
+         --Client_SYS.Add_To_Attr('PART_PRICE', 5, attr_);
+         --Client_SYS.Add_To_Attr('PRICE_SOURCE_DB', 'BASE', attr_);
+         --Customer_Order_Line_API.New__(line_info_, line_objid_, line_objversion_, attr_, 'DO');
+         
+         --Setting the prices from default api (If tax is there it will be considered too)
+         Client_SYS.Add_To_Attr('BASE_SALE_UNIT_PRICE', base_sale_unit_price_, attr_);
+         Client_SYS.Add_To_Attr('BASE_UNIT_PRICE_INCL_TAX', base_unit_price_inc_tax_, attr_);
+         Client_SYS.Add_To_Attr('UNIT_PRICE_INCL_TAX', unit_price_inc_tax_, attr_);
+         Client_SYS.Add_To_Attr('PART_PRICE', part_price_, attr_);
+         Client_SYS.Add_To_Attr('PRICE_SOURCE_DB', price_source_db_, attr_);
+         Customer_Order_Line_API.New__(line_info_, line_objid_, line_objversion_, attr_, 'DO');
+         
+      END LOOP;
+   
+      RETURN order_no_;
+      EXCEPTION
+      WHEN OTHERS THEN
+         error_msg_ := Error_SYS.Strip_Ora_Error(SQLERRM, SQLCODE, keep_non_fnd_ => FALSE);
+         Error_SYS.Appl_General('IFS_ERROR', error_msg_);
+   END Core_Projection_CustomerOrderService;
+
+BEGIN
+   RETURN Core_Projection_CustomerOrderService(order_input_, order_lines_input_);
+END Create_Sf_Customer_Order___;
+
+END Customer_Order_Service_SVC;
+-- [END IFS COMPLETE BLOCK]
+/
+SHOW ERROR
+
+GRANT EXECUTE ON Customer_Order_Service_SVC TO IFSSYS
+/
+
+-- [IFS COMPLETE BLOCK BEGINEND]
+DECLARE
+   projection_ VARCHAR2(250) := 'CustomerOrderService';
+BEGIN
+   Fnd_Projection_API.Create_Or_Replace(projection_, description_ => 'Includes rest end-points for Customer Order and Orderlines related integrations', categories_ => 'Integration', component_ => 'ORDER', layer_  => 'Core', plsql_package_ => 'CUSTOMER_ORDER_SERVICE_SVC', api_class_ => 'Standard', deprecated_ => 'FALSE');
+   Fnd_Proj_Action_API.Create_Or_Replace(projection_, 'CreateSfCustomerOrder');
+
+   COMMIT;
+END;
+-- [END IFS COMPLETE BLOCK]
+/
+
+-----------------------------------------------------------------------------
+-------------------------- REFRESH DICTIONARY CACHE -------------------------
+-----------------------------------------------------------------------------
+
+-- [IFS COMPLETE BLOCK BEGINEND]
+BEGIN
+    Dictionary_SYS.Refresh_Odata_Projection_Cache('CustomerOrderService');
+END;
+-- [END IFS COMPLETE BLOCK]
+/

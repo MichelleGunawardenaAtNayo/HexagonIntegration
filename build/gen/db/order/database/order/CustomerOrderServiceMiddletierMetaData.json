@@ -1,0 +1,417 @@
+{
+    "projection": {
+        "Name": "CustomerOrderService",
+        "Metadata": {
+            "Version": "[#[generate:version]#]",
+            "Description": "Includes rest end-points for Customer Order and Orderlines related integrations",
+            "Category": [
+                "Integration"
+            ]
+        },
+        "Container": {
+            "EntitySets": [[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Entityset_Metadata:{
+    "Projection": "CustomerOrderService",
+    "Lu": [
+    ]
+}]#]
+            ],
+            "Singletons": [
+            ],
+            "Actions": [
+                {
+                    "Name": "CreateSfCustomerOrder",
+                    "DataType": "Text",
+                    "Collection": false,
+                    "Parameters": [
+                        {
+                            "Name": "OrderInput",
+                            "DataType": "Structure",
+                            "SubType": "CustOrderStruct",
+                            "Collection": false,
+                            "Nullable": true
+                        },
+                        {
+                            "Name": "OrderLinesInput",
+                            "DataType": "Structure",
+                            "SubType": "OrderLineStruct",
+                            "Collection": true,
+                            "Nullable": true
+                        }
+                    ],
+                    "Execute": {
+                        "PL-SQL": {
+                            "MethodCall": "Customer_Order_Service_SVC.Do_Create_Sf_Customer_Order(:OrderInput, :OrderLinesInput, unbound## => '')",
+                            "ReturnType": "Customer_Order_Service_SVC.Text_Art",
+                            "Bind": [
+                                {
+                                    "Kind": "Parameter",
+                                    "Name": "OrderInput",
+                                    "ImplementationType": "STRUCTURE",
+                                    "SubType": "CUSTOMER_ORDER_SERVICE_SVC.CUST_ORDER_STRUCT_REC"
+                                },
+                                {
+                                    "Kind": "Parameter",
+                                    "Name": "OrderLinesInput",
+                                    "ImplementationType": "ARRAY",
+                                    "SubType": "CUSTOMER_ORDER_SERVICE_SVC.ORDER_LINE_STRUCT_ARR"
+                                }
+                            ]
+                        }
+                    }
+                }[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Action_Metadata:{"Projection":"CustomerOrderService"}]#]
+            ],
+            "Functions": [
+            ]
+        },
+        "Enumerations": [[#[jsoncallback:Custom_Object_Proxy_SYS.Server_Enumeration_Metadata:{
+    "Projection": "CustomerOrderService",
+    "Lu": [
+    ]
+}]#]
+        ],
+        "Structures": [
+            {
+                "Name": "CustOrderStruct",
+                "PLSQLRecordName": "CUSTOMER_ORDER_SERVICE_SVC.CUST_ORDER_STRUCT_REC",
+                "Attributes": [
+                    {
+                        "Name": "CustomerId",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "CUSTOMER_ID",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "OrderNo",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "ORDER_NO",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "OrderType",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "ORDER_TYPE",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "CustomerPoNo",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "CUSTOMER_PO_NO",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "Status",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "STATUS",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "Notes",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "NOTES",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "WantedDeliveryDate",
+                        "DataType": "Date",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "WANTED_DELIVERY_DATE",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "DATE"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "Street",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "STREET",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "City",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "CITY",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "State",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "STATE",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "ZipCode",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "ZIP_CODE",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "CountryCode",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "COUNTRY_CODE",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "DocumentText",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "DOCUMENT_TEXT",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "Reference",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "REFERENCE",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "Coordinator",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "COORDINATOR",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "CfSvcProdLine",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "CF_SVC_PROD_LINE",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "CfOrderFrom",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "CF_ORDER_FROM",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "Name": "OrderLineStruct",
+                "PLSQLRecordName": "CUSTOMER_ORDER_SERVICE_SVC.ORDER_LINE_STRUCT_REC",
+                "Attributes": [
+                    {
+                        "Name": "OrderNo",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "ORDER_NO",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "SalesPartNo",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "SALES_PART_NO",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "SalesQty",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "SALES_QTY",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "Price",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "PRICE",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "Status",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "STATUS",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "TrackingNo",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "TRACKING_NO",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "PromisedDeliveryDate",
+                        "DataType": "Date",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "PROMISED_DELIVERY_DATE",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "DATE"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "Name": "StreamInfoRec",
+                "PLSQLRecordName": "CUSTOMER_ORDER_SERVICE_SVC.STREAM_INFO_REC",
+                "Attributes": [
+                    {
+                        "Name": "FileName",
+                        "DataType": "Text"
+                    },
+                    {
+                        "Name": "MimeType",
+                        "DataType": "Text"
+                    }
+                ]
+            },
+            {
+                "Name": "EntityDec",
+                "PLSQLRecordName": "CUSTOMER_ORDER_SERVICE_SVC.ENTITY_DEC",
+                "Attributes": [
+                    {
+                        "Name": "ETag",
+                        "DataType": "Text"
+                    },
+                    {
+                        "Name": "Info",
+                        "DataType": "Text"
+                    },
+                    {
+                        "Name": "Attr",
+                        "DataType": "Text"
+                    }
+                ]
+            }[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Structure_Metadata:{
+    "Projection": "CustomerOrderService",
+    "Lu": [
+    ]
+}]#]
+        ],
+        "Entities": [[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Entity_Type_Metadata:{
+    "Projection": "CustomerOrderService",
+    "Lu": [
+    ]
+}]#]
+        ]
+    }
+}
