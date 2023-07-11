@@ -1,0 +1,219 @@
+{
+    "projection": {
+        "Name": "PricingService",
+        "Metadata": {
+            "Version": "[#[generate:version]#]",
+            "Description": "Includes rest end-points for IFS Customer Order Pricing related integrations",
+            "Category": [
+                "Integration"
+            ]
+        },
+        "Container": {
+            "EntitySets": [
+            ],
+            "Singletons": [
+            ],
+            "Actions": [
+                {
+                    "Name": "GetPriceListData",
+                    "DataType": "Structure",
+                    "SubType": "PriceStruct",
+                    "Collection": true,
+                    "Parameters": [
+                        {
+                            "Name": "CustomerNo",
+                            "DataType": "Text",
+                            "Collection": false,
+                            "Nullable": true
+                        },
+                        {
+                            "Name": "Quantity",
+                            "DataType": "Number",
+                            "Collection": false,
+                            "Nullable": true
+                        },
+                        {
+                            "Name": "SalesPartNoArr",
+                            "DataType": "Structure",
+                            "SubType": "SalesPartStruct",
+                            "Collection": true,
+                            "Nullable": true
+                        }
+                    ],
+                    "Execute": {
+                        "PL-SQL": {
+                            "MethodCall": "Pricing_Service_SVC.Do_Get_Price_List_Data(:CustomerNo, :Quantity, :SalesPartNoArr, unbound## => '')",
+                            "ReturnType": "Pricing_Service_SVC.Price_Struct_Art",
+                            "Bind": [
+                                {
+                                    "Kind": "Parameter",
+                                    "Name": "CustomerNo",
+                                    "ImplementationType": "VARCHAR2"
+                                },
+                                {
+                                    "Kind": "Parameter",
+                                    "Name": "Quantity",
+                                    "ImplementationType": "NUMBER"
+                                },
+                                {
+                                    "Kind": "Parameter",
+                                    "Name": "SalesPartNoArr",
+                                    "ImplementationType": "ARRAY",
+                                    "SubType": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_ARR"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ],
+            "Functions": [
+                {
+                    "Name": "GetPriceData",
+                    "DataType": "Structure",
+                    "SubType": "PriceStruct",
+                    "Collection": false,
+                    "Parameters": [
+                        {
+                            "Name": "SalesPartNo",
+                            "DataType": "Text",
+                            "Collection": false,
+                            "Nullable": true
+                        },
+                        {
+                            "Name": "CustomerNo",
+                            "DataType": "Text",
+                            "Collection": false,
+                            "Nullable": true
+                        },
+                        {
+                            "Name": "Quantity",
+                            "DataType": "Number",
+                            "Collection": false,
+                            "Nullable": true
+                        }
+                    ],
+                    "Execute": {
+                        "SQL": {
+                            "From": "TABLE(Pricing_Service_SVC.Rd_Get_Price_Data(:SalesPartNo, :CustomerNo, :Quantity, unbound## => ''))",
+                            "Bind": [
+                                {
+                                    "Kind": "Parameter",
+                                    "Name": "SalesPartNo",
+                                    "ImplementationType": "VARCHAR2"
+                                },
+                                {
+                                    "Kind": "Parameter",
+                                    "Name": "CustomerNo",
+                                    "ImplementationType": "VARCHAR2"
+                                },
+                                {
+                                    "Kind": "Parameter",
+                                    "Name": "Quantity",
+                                    "ImplementationType": "NUMBER"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "Enumerations": [
+        ],
+        "Structures": [
+            {
+                "Name": "PriceStruct",
+                "PLSQLRecordName": "PRICING_SERVICE_SVC.PRICE_STRUCT_REC",
+                "Attributes": [
+                    {
+                        "Name": "Price",
+                        "DataType": "Number",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "PRICE",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "NUMBER"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "PriceSource",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "PRICE_SOURCE",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "PriceSourceId",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "PRICE_SOURCE_ID",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "Name": "SalesPartStruct",
+                "PLSQLRecordName": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_REC",
+                "Attributes": [
+                    {
+                        "Name": "PartNo",
+                        "DataType": "Text",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "PART_NO",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "Name": "StreamInfoRec",
+                "PLSQLRecordName": "PRICING_SERVICE_SVC.STREAM_INFO_REC",
+                "Attributes": [
+                    {
+                        "Name": "FileName",
+                        "DataType": "Text"
+                    },
+                    {
+                        "Name": "MimeType",
+                        "DataType": "Text"
+                    }
+                ]
+            },
+            {
+                "Name": "EntityDec",
+                "PLSQLRecordName": "PRICING_SERVICE_SVC.ENTITY_DEC",
+                "Attributes": [
+                    {
+                        "Name": "ETag",
+                        "DataType": "Text"
+                    },
+                    {
+                        "Name": "Info",
+                        "DataType": "Text"
+                    },
+                    {
+                        "Name": "Attr",
+                        "DataType": "Text"
+                    }
+                ]
+            }
+        ],
+        "Entities": [
+        ]
+    }
+}

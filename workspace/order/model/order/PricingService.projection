@@ -1,0 +1,56 @@
+projection PricingService;
+component ORDER;
+layer Core;
+description "Includes rest end-points for IFS Customer Order Pricing related integrations";
+category Integration;
+
+--------------------------------- FRAGMENTS ---------------------------------
+
+----------------------------- MAIN ENTRY POINTS -----------------------------
+
+
+------------------------------ ENTITY DETAILS -------------------------------
+
+
+------------------------------- ENUMERATIONS --------------------------------
+
+
+---------------------------------- QUERIES ----------------------------------
+
+
+---------------------------------- ACTIONS ----------------------------------
+--Get Price data for a multiple salesparts, per customer and quantity
+action GetPriceListData List<Structure(PriceStruct)> {
+   initialcheck none;
+   parameter CustomerNo Text;
+   parameter Quantity Number;
+   parameter SalesPartNoArr List<Structure(SalesPartStruct)>;
+}
+
+--------------------------------- FUNCTIONS ---------------------------------
+--Get Price data for a particular salespart, customer and quantity
+function GetPriceData Structure(PriceStruct) {
+   parameter SalesPartNo Text;
+   parameter CustomerNo Text;
+   parameter Quantity Number;
+
+}
+
+-------------------------------- STRUCTURES ---------------------------------
+structure PriceStruct {
+   attribute Price Number;
+   attribute PriceSource Text;
+   attribute PriceSourceId Text;
+}
+
+structure SalesPartStruct {
+   attribute PartNo Text;
+}
+
+--------------------------------- VIRTUALS ----------------------------------
+
+
+--------------------------------- SUMMARIES ---------------------------------
+
+
+-------------------------------- SINGLETONS ---------------------------------

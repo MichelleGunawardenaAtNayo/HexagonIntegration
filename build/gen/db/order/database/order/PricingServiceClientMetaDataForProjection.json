@@ -1,0 +1,142 @@
+{
+    "name": "PricingService",
+    "service": "PricingService.svc",
+    "version": "-1113275670",
+    "contains": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entityset_Metadata:{
+    "Projection": "PricingService",
+    "Lu": [
+    ]
+}]#]
+    },
+    "enumerations": {[#[jsoncallback:Custom_Object_Proxy_SYS.Client_Enumeration_Metadata:{
+    "Projection": "PricingService",
+    "Lu": [
+    ]
+}]#]
+    },
+    "entities": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entity_Type_Metadata:{
+    "Projection": "PricingService",
+    "Lu": [
+    ]
+}]#]
+    },
+    "structures": {
+        "PriceStruct": {
+            "name": "PriceStruct",
+            "attributes": {
+                "Price": {
+                    "datatype": "Number",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "PriceSource": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                },
+                "PriceSourceId": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                }
+            },
+            "references": {
+            },
+            "arrays": {
+            }
+        },
+        "SalesPartStruct": {
+            "name": "SalesPartStruct",
+            "attributes": {
+                "PartNo": {
+                    "datatype": "Text",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
+                }
+            },
+            "references": {
+            },
+            "arrays": {
+            }
+        }
+    },
+    "actions": {
+        "GetPriceListData": {
+            "name": "GetPriceListData",
+            "ludependencies": [
+            ],
+            "returnType": {
+                "dataType": "Structure",
+                "subType": "PriceStruct",
+                "collection": true
+            },
+            "parameters": [
+                {
+                    "Name": "CustomerNo",
+                    "DataType": "Text",
+                    "Collection": false,
+                    "Nullable": true
+                },
+                {
+                    "Name": "Quantity",
+                    "DataType": "Number",
+                    "Collection": false,
+                    "Nullable": true
+                },
+                {
+                    "Name": "SalesPartNoArr",
+                    "DataType": "Structure",
+                    "SubType": "SalesPartStruct",
+                    "Collection": true,
+                    "Nullable": true
+                }
+            ]
+        }[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Action_Metadata:{
+    "Projection": "PricingService"
+}]#]
+    },
+    "functions": {
+        "GetPriceData": {
+            "name": "GetPriceData",
+            "ludependencies": [
+            ],
+            "parameters": [
+                {
+                    "Name": "SalesPartNo",
+                    "DataType": "Text",
+                    "Collection": false,
+                    "Nullable": true
+                },
+                {
+                    "Name": "CustomerNo",
+                    "DataType": "Text",
+                    "Collection": false,
+                    "Nullable": true
+                },
+                {
+                    "Name": "Quantity",
+                    "DataType": "Number",
+                    "Collection": false,
+                    "Nullable": true
+                }
+            ]
+        }
+    },
+    "objectconnections": [#[metacallback:Dynamic_Reference_Metadata_API.Get_Json_Entities_:]#]
+}

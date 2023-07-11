@@ -1,0 +1,154 @@
+-----------------------------------------------------------------------------
+--
+--  Logical unit: PricingService
+--  Component:    ORDER
+--
+--  IFS Developer Studio Template Version 3.0
+--
+--  Date    Sign    History
+--  ------  ------  ---------------------------------------------------------
+-----------------------------------------------------------------------------
+
+layer Core;
+
+FUNCTION Get_Price_Data___ (
+   sales_part_no_ IN VARCHAR2,
+   customer_no_ IN VARCHAR2,
+   quantity_ IN NUMBER) RETURN Price_Struct_Rec
+IS
+   sale_unit_price_           NUMBER;
+   unit_price_incl_tax_       NUMBER;
+   base_sale_unit_price_      NUMBER;
+   base_unit_price_incl_tax_  NUMBER;
+   currency_rate_             NUMBER;
+   discount_                  NUMBER;
+   price_source_              VARCHAR2(10);
+   price_source_id_           VARCHAR2(10);
+   
+   contract_                  VARCHAR2(5);
+   currency_code_             VARCHAR2(3);
+   effective_date_            DATE;
+   agreement_id_              VARCHAR2(10);
+   price_list_no_             VARCHAR2(10);
+   condition_code_            VARCHAR2(10);
+   use_price_incl_tax_        VARCHAR2(5); --FALSE?
+   
+   price_rec_                 Price_Struct_Rec;
+BEGIN
+	
+   contract_ := 'PSG';
+   
+   --Get Currency Code from Customer
+   currency_code_    := Cust_Ord_Customer_API.Get_Currency_Code(customer_no_);
+
+
+   effective_date_   := TRUNC(Site_API.Get_Site_Date(contract_));
+   agreement_id_     := Customer_Agreement_API.Get_First_Valid_Agreement(customer_no_, contract_, currency_code_, effective_date_, 'FALSE');
+
+   price_list_no_    := Customer_Order_Pricing_API.Get_Valid_Price_List(contract_, sales_part_no_, customer_no_, currency_code_);
+   
+   IF (Part_Catalog_API.Get_Condition_Code_Usage_Db(sales_part_no_) = 'ALLOW_COND_CODE') THEN 
+    condition_code_ := Condition_Code_API.Get_Default_Condition_Code();
+   END IF;
+   
+   use_price_incl_tax_ := Customer_Tax_Calc_Basis_API.Get_Use_Price_Incl_Tax_Db(customer_no_, Site_API.Get_Company(contract_));
+   
+	Customer_Order_Pricing_API.Get_Sales_Part_Price_Info(sale_unit_price_,
+                                                        unit_price_incl_tax_,
+                                                        base_sale_unit_price_,
+                                                        base_unit_price_incl_tax_,
+                                                        currency_rate_,
+                                                        discount_,
+                                                        price_source_,
+                                                        price_source_id_,
+                                                        contract_,
+                                                        customer_no_,
+                                                        currency_code_,
+                                                        agreement_id_,
+                                                        sales_part_no_,
+                                                        quantity_,
+                                                        price_list_no_,
+                                                        effective_date_,
+                                                        condition_code_,
+                                                        use_price_incl_tax_);
+                                                        
+   price_rec_.price := sale_unit_price_;
+   price_rec_.price_source := price_source_;
+   price_rec_.price_source_id := price_source_id_;
+                                                        
+   RETURN price_rec_;    
+END Get_Price_Data___;
+
+
+FUNCTION Get_Price_List_Data___ (
+   customer_no_ IN VARCHAR2,
+   quantity_ IN NUMBER,
+   sales_part_no_arr_ IN Sales_Part_Struct_Arr) RETURN Price_Struct_Arr
+IS
+   sale_unit_price_           NUMBER;
+   unit_price_incl_tax_       NUMBER;
+   base_sale_unit_price_      NUMBER;
+   base_unit_price_incl_tax_  NUMBER;
+   currency_rate_             NUMBER;
+   discount_                  NUMBER;
+   price_source_              VARCHAR2(10);
+   price_source_id_           VARCHAR2(10);
+   
+   contract_                  VARCHAR2(5);
+   currency_code_             VARCHAR2(3);
+   effective_date_            DATE;
+   agreement_id_              VARCHAR2(10);
+   price_list_no_             VARCHAR2(10);
+   condition_code_            VARCHAR2(10);
+   use_price_incl_tax_        VARCHAR2(5); --FALSE?
+   
+   price_list_ Price_Struct_Arr;
+BEGIN
+	contract_ := 'PSG';
+   
+   --Get Currency Code from Customer
+   currency_code_    := Cust_Ord_Customer_API.Get_Currency_Code(customer_no_);
+
+
+   effective_date_   := TRUNC(Site_API.Get_Site_Date(contract_));
+   agreement_id_     := Customer_Agreement_API.Get_First_Valid_Agreement(customer_no_, contract_, currency_code_, effective_date_, 'FALSE');
+   use_price_incl_tax_ := Customer_Tax_Calc_Basis_API.Get_Use_Price_Incl_Tax_Db(customer_no_, Site_API.Get_Company(contract_));
+   
+   price_list_ := Price_Struct_Arr();
+   
+   FOR index_ IN sales_part_no_arr_.FIRST..sales_part_no_arr_.LAST LOOP
+
+      price_list_no_    := Customer_Order_Pricing_API.Get_Valid_Price_List(contract_, sales_part_no_arr_(index_).Part_No, customer_no_, currency_code_);
+   
+      IF (Part_Catalog_API.Get_Condition_Code_Usage_Db(sales_part_no_arr_(index_).Part_No) = 'ALLOW_COND_CODE') THEN 
+         condition_code_ := Condition_Code_API.Get_Default_Condition_Code();
+      END IF;
+      
+      Customer_Order_Pricing_API.Get_Sales_Part_Price_Info(sale_unit_price_,
+                                                        unit_price_incl_tax_,
+                                                        base_sale_unit_price_,
+                                                        base_unit_price_incl_tax_,
+                                                        currency_rate_,
+                                                        discount_,
+                                                        price_source_,
+                                                        price_source_id_,
+                                                        contract_,
+                                                        customer_no_,
+                                                        currency_code_,
+                                                        agreement_id_,
+                                                        sales_part_no_arr_(index_).Part_No,
+                                                        quantity_,
+                                                        price_list_no_,
+                                                        effective_date_,
+                                                        condition_code_,
+                                                        use_price_incl_tax_);
+
+
+         price_list_.EXTEND;
+         price_list_(price_list_.LAST).price := sale_unit_price_;
+         price_list_(price_list_.LAST).price_source := price_source_;
+         price_list_(price_list_.LAST).price_source_id := price_source_id_;
+   END LOOP;
+   
+   RETURN price_list_;
+END Get_Price_List_Data___;
