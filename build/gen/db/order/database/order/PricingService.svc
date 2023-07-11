@@ -1,0 +1,998 @@
+-----------------------------------------------------------------------------
+--
+--  Logical unit: PricingService
+--  Type:         Projection
+--  Component:    ORDER
+--
+--  Template:     3.0
+--  Built by:     IFS Developer Studio
+--
+--  NOTE! Do not edit!! This file is completely generated and will be
+--        overwritten next time the corresponding model is saved.
+-----------------------------------------------------------------------------
+
+
+--Storing resulting json metadata in database splitted by indivudual objects
+-- [IFS COMPLETE BLOCK DECLAREEND]
+DECLARE
+   projection_ VARCHAR2(250) := 'PricingService';
+   header_     Model_Design_SYS.Fnd_Model_Design_Rec;
+   json_       VARCHAR2(32767);
+BEGIN
+   header_ := Model_Design_SYS.Prepare_Design_Data_Load('projection', projection_, Model_Design_SYS.SERVER_METADATA,
+      'Includes rest end-points for IFS Customer Order Pricing related integrations');
+   json_ := '{"projection": {"Name": "PricingService","Metadata": {"Version": "[#[generate:version]#]","Description": "Includes rest end-points for IFS Customer Order Pricing related integrations","Category": ["Integration"]},"Container": {"EntitySets": [[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Entityset_Metadata:{"Projection": "PricingService","Lu": []}]#]],"Singletons": [],"Actions": [{"Name": "GetPriceListData","DataType": "Structure","SubType": "PriceStruct","Collection": true,"Parameters": [{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true},{"Name": "SalesPartNoArr","DataType": "Structure","SubType": "SalesPartStruct","Collection": true,"Nullable": true}],"Execute": {"PL-SQL": {"MethodCall": "Pricing_Service_SVC.Do_Get_Price_List_Data(:CustomerNo, :Quantity, :SalesPartNoArr, unbound## => '''')","ReturnType": "Pricing_Service_SVC.Price_Struct_Art","Bind": [{"Kind": "Parameter","Name": "CustomerNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "Quantity","ImplementationType": "NUMBER"},{"Kind": "Parameter","Name": "SalesPartNoArr","ImplementationType": "ARRAY","SubType": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_ARR"}]}}}[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Action_Metadata:{"Projection":"PricingService"}]#]],"Functions": [{"Name": "GetPriceData","DataType": "Structure","SubType": "PriceStruct","Collection": false,"Parameters": [{"Name": "SalesPartNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true}],"Execute": {"SQL": {"From": "TABLE(Pricing_Service_SVC.Rd_Get_Price_Data(:SalesPartNo, :CustomerNo, :Quantity, unbound## => ''''))","Bind": [{"Kind": "Parameter","Name": "SalesPartNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "CustomerNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "Quantity","ImplementationType": "NUMBER"}]}}}]},"Enumerations": [[#[jsoncallback:Custom_Object_Proxy_SYS.Server_Enumeration_Metadata:{"Projection": "PricingService","Lu": []}]#]],"Structures": [{"Name": "PriceStruct","PLSQLRecordName": "PRICING_SERVICE_SVC.PRICE_STRUCT_REC","Attributes": [{"Name": "Price","DataType": "Number","Collection": false,"Nullable": true,"AttrName": "PRICE","Execute": {"SQL": {"Impl';
+   json_ := json_ || 'ementationType": "NUMBER"}}},{"Name": "PriceSource","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE_SOURCE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "PriceSourceId","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE_SOURCE_ID","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}}]},{"Name": "SalesPartStruct","PLSQLRecordName": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_REC","Attributes": [{"Name": "PartNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PART_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}}]},{"Name": "StreamInfoRec","PLSQLRecordName": "PRICING_SERVICE_SVC.STREAM_INFO_REC","Attributes": [{"Name": "FileName","DataType": "Text"},{"Name": "MimeType","DataType": "Text"}]},{"Name": "EntityDec","PLSQLRecordName": "PRICING_SERVICE_SVC.ENTITY_DEC","Attributes": [{"Name": "ETag","DataType": "Text"},{"Name": "Info","DataType": "Text"},{"Name": "Attr","DataType": "Text"}]}[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Structure_Metadata:{"Projection": "PricingService","Lu": []}]#]],"Entities": [[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Entity_Type_Metadata:{"Projection": "PricingService","Lu": []}]#]]}}';
+   Model_Design_SYS.Add_Model_Design_Template(header_, json_);
+   COMMIT;
+END;
+-- [END IFS COMPLETE BLOCK]
+/
+
+-- [IFS COMPLETE BLOCK DECLAREEND]
+DECLARE
+   projection_ VARCHAR2(250) := 'PricingService';
+   header_     Model_Design_SYS.Fnd_Model_Design_Rec;
+   json_       VARCHAR2(32767);
+BEGIN
+   header_ := Model_Design_SYS.Prepare_Design_Data_Load('projection', projection_, Model_Design_SYS.CLIENT_METADATA, '');
+   json_ := '{"name": "PricingService","service": "PricingService.svc","version": "-1113275670","contains": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entityset_Metadata:{"Projection": "PricingService","Lu": []}]#]},"enumerations": {[#[jsoncallback:Custom_Object_Proxy_SYS.Client_Enumeration_Metadata:{"Projection": "PricingService","Lu": []}]#]},"entities": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entity_Type_Metadata:{"Projection": "PricingService","Lu": []}]#]},"structures": {"PriceStruct": {"name": "PriceStruct","attributes": {"Price": {"datatype": "Number","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"PriceSource": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"PriceSourceId": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false}},"references": {},"arrays": {}},"SalesPartStruct": {"name": "SalesPartStruct","attributes": {"PartNo": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false}},"references": {},"arrays": {}}},"actions": {"GetPriceListData": {"name": "GetPriceListData","ludependencies": [],"returnType": {"dataType": "Structure","subType": "PriceStruct","collection": true},"parameters": [{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true},{"Name": "SalesPartNoArr","DataType": "Structure","SubType": "SalesPartStruct","Collection": true,"Nullable": true}]}[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Action_Metadata:{"Projection": "PricingService"}]#]},"functions": {"GetPriceData": {"name": "GetPriceData","ludependencies": [],"parameters": [{"Name": "SalesPartNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true}]}},"objectconnections": [#[metacallback:Dynamic_Reference_Metadata_API.Get_Json_Entities_:]#]}';
+   Model_Design_SYS.Add_Model_Design_Template(header_, json_);
+   COMMIT;
+END;
+-- [END IFS COMPLETE BLOCK]
+/
+
+-- [IFS COMPLETE BLOCK DECLAREEND]
+DECLARE
+   projection_ VARCHAR2(250) := 'PricingService';
+   header_     Model_Design_SYS.Fnd_Model_Api_Doc_Rec;
+   json_       VARCHAR2(32767);
+BEGIN
+   header_ := Model_Design_SYS.Prepare_Doc_Load('projection', projection_, Model_Design_SYS.SERVER_METADATA, 'Includes rest end-points for IFS Customer Order Pricing related integrations');
+   json_ := '{"projection": {"Name": "PricingService","Metadata": {"Version": "[#[generate:version]#]","Description": "Includes rest end-points for IFS Customer Order Pricing related integrations","Category": ["Integration"]},"Container": {"EntitySets": [],"Singletons": [],"Actions": [{"Name": "GetPriceListData","DataType": "Structure","SubType": "PriceStruct","Collection": true,"Parameters": [{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true},{"Name": "SalesPartNoArr","DataType": "Structure","SubType": "SalesPartStruct","Collection": true,"Nullable": true}],"Execute": {"PL-SQL": {"MethodCall": "Pricing_Service_SVC.Do_Get_Price_List_Data(:CustomerNo, :Quantity, :SalesPartNoArr, unbound## => '''')","ReturnType": "Pricing_Service_SVC.Price_Struct_Art","Bind": [{"Kind": "Parameter","Name": "CustomerNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "Quantity","ImplementationType": "NUMBER"},{"Kind": "Parameter","Name": "SalesPartNoArr","ImplementationType": "ARRAY","SubType": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_ARR"}]}}}],"Functions": [{"Name": "GetPriceData","DataType": "Structure","SubType": "PriceStruct","Collection": false,"Parameters": [{"Name": "SalesPartNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true}],"Execute": {"SQL": {"From": "TABLE(Pricing_Service_SVC.Rd_Get_Price_Data(:SalesPartNo, :CustomerNo, :Quantity, unbound## => ''''))","Bind": [{"Kind": "Parameter","Name": "SalesPartNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "CustomerNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "Quantity","ImplementationType": "NUMBER"}]}}}]},"Enumerations": [],"Structures": [{"Name": "PriceStruct","PLSQLRecordName": "PRICING_SERVICE_SVC.PRICE_STRUCT_REC","Attributes": [{"Name": "Price","DataType": "Number","Collection": false,"Nullable": true,"AttrName": "PRICE","Execute": {"SQL": {"ImplementationType": "NUMBER"}}},{"Name": "PriceSource","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE_SOURCE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "PriceSourceId","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE_SOURCE_ID","Execute": {"SQL"';
+   json_ := json_ || ': {"ImplementationType": "VARCHAR2"}}}]},{"Name": "SalesPartStruct","PLSQLRecordName": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_REC","Attributes": [{"Name": "PartNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PART_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}}]},{"Name": "StreamInfoRec","PLSQLRecordName": "PRICING_SERVICE_SVC.STREAM_INFO_REC","Attributes": [{"Name": "FileName","DataType": "Text"},{"Name": "MimeType","DataType": "Text"}]},{"Name": "EntityDec","PLSQLRecordName": "PRICING_SERVICE_SVC.ENTITY_DEC","Attributes": [{"Name": "ETag","DataType": "Text"},{"Name": "Info","DataType": "Text"},{"Name": "Attr","DataType": "Text"}]}],"Entities": []}}';
+   Model_Design_SYS.Add_Model_Api_Doc_Template(header_, json_);
+   COMMIT;
+END;
+-- [END IFS COMPLETE BLOCK]
+/
+
+PROMPT Creating Pricing_Service_SVC specification
+
+-- [IFS COMPLETE BLOCK PACKAGE Pricing_Service_SVC]
+CREATE OR REPLACE PACKAGE Pricing_Service_SVC IS
+
+module_  CONSTANT VARCHAR2(25)  := 'ORDER';
+lu_name_ CONSTANT VARCHAR2(250) := 'PricingService';
+lu_type_ CONSTANT VARCHAR2(25)  := 'Projection';
+
+-----------------------------------------------------------------------------
+---------------------------- PUBLIC DECLARATIONS ----------------------------
+-----------------------------------------------------------------------------
+
+TYPE Entity_Dec IS RECORD (
+   etag                           VARCHAR2(100),
+   info                           VARCHAR2(4000),
+   attr                           VARCHAR2(32000));
+
+TYPE Entity_Small_Dec IS RECORD (
+   etag                           VARCHAR2(100),
+   info                           VARCHAR2(4000),
+   attr                           VARCHAR2(4000));
+
+TYPE Entity_Small_Drr      IS TABLE OF Entity_Small_Dec;
+
+TYPE Entity_Drr      IS TABLE OF Entity_Dec;
+
+TYPE Objid_Arr       IS TABLE OF VARCHAR2(100);
+
+TYPE Objid_Art       IS TABLE OF VARCHAR2(100);
+
+TYPE Empty_Art       IS TABLE OF VARCHAR2(1);
+
+TYPE Alpha_Arr       IS TABLE OF DATE;
+
+TYPE Alpha_Art       IS TABLE OF DATE;
+
+TYPE Binary_Arr      IS TABLE OF BLOB;
+
+TYPE Binary_Art      IS TABLE OF BLOB;
+
+TYPE Boolean_Arr     IS TABLE OF BOOLEAN;
+
+TYPE Boolean_Art     IS TABLE OF VARCHAR2(5);
+
+TYPE Date_Arr        IS TABLE OF DATE;
+
+TYPE Date_Art        IS TABLE OF DATE;
+
+TYPE Entity_Arr      IS TABLE OF VARCHAR2(100); --List of objid's
+
+TYPE Entity_Art      IS TABLE OF VARCHAR2(100); --List of objid's
+
+TYPE Enumeration_Arr IS TABLE OF VARCHAR2(100);
+
+TYPE Enumeration_Art IS TABLE OF VARCHAR2(100);
+
+TYPE GUID_Arr        IS TABLE OF VARCHAR2(100);
+
+TYPE GUID_Art        IS TABLE OF VARCHAR2(100);
+
+TYPE Identity_Arr    IS TABLE OF NUMBER;
+
+TYPE Identity_Art    IS TABLE OF NUMBER;
+
+TYPE Integer_Arr     IS TABLE OF INTEGER;
+
+TYPE Integer_Art     IS TABLE OF INTEGER;
+
+TYPE Long_Text_Arr   IS TABLE OF CLOB;
+
+TYPE Long_Text_Art   IS TABLE OF CLOB;
+
+TYPE Lookup_Arr      IS TABLE OF VARCHAR2(100);
+
+TYPE Lookup_Art      IS TABLE OF VARCHAR2(100);
+
+TYPE Number_Arr      IS TABLE OF NUMBER;
+
+TYPE Number_Art      IS TABLE OF NUMBER;
+
+TYPE Text_Arr        IS TABLE OF VARCHAR2(4000);
+
+TYPE Text_Art        IS TABLE OF VARCHAR2(4000);
+
+TYPE Time_Arr        IS TABLE OF DATE;
+
+TYPE Time_Art        IS TABLE OF DATE;
+
+TYPE Timestamp_Arr   IS TABLE OF DATE;
+
+TYPE Timestamp_Art   IS TABLE OF DATE;
+
+TYPE Stream_Arr      IS TABLE OF BLOB;
+
+TYPE Stream_Art      IS TABLE OF BLOB;
+
+TYPE Stream_Data_Ret IS RECORD (
+   file_name                           VARCHAR2(100),
+   mime_type                           VARCHAR2(100),
+   stream_data                         BLOB);
+
+TYPE Stream_Data_Art IS TABLE OF Stream_Data_Ret;
+
+TYPE Stream_Data_Rec IS RECORD (
+   file_name                           VARCHAR2(100),
+   mime_type                           VARCHAR2(100),
+   stream_data                         BLOB);
+
+TYPE Stream_Data_Arr IS TABLE OF Stream_Data_Rec;
+
+TYPE Stream_Info_Rec IS RECORD (
+   file_name                           VARCHAR2(100),
+   mime_type                           VARCHAR2(100));
+
+TYPE Stream_Text_Data_Rec IS RECORD (
+   file_name                           VARCHAR2(100),
+   mime_type                           VARCHAR2(100),
+   stream_data                         CLOB);
+
+TYPE Price_Struct_Ret IS RECORD (
+   price                          NUMBER,
+   price_source                   VARCHAR2(4000),
+   price_source_id                VARCHAR2(4000));
+
+TYPE Price_Struct_Art IS TABLE OF Price_Struct_Ret;
+
+TYPE Price_Struct_Rec IS RECORD (
+   price                          NUMBER,
+   price_source                   VARCHAR2(4000),
+   price_source_id                VARCHAR2(4000));
+
+TYPE Price_Struct_Arr IS TABLE OF Price_Struct_Rec;
+
+TYPE Sales_Part_Struct_Ret IS RECORD (
+   part_no                        VARCHAR2(4000));
+
+TYPE Sales_Part_Struct_Art IS TABLE OF Sales_Part_Struct_Ret;
+
+TYPE Sales_Part_Struct_Rec IS RECORD (
+   part_no                        VARCHAR2(4000));
+
+TYPE Sales_Part_Struct_Arr IS TABLE OF Sales_Part_Struct_Rec;
+
+
+-----------------------------------------------------------------------------
+------------------------- METADATA PROVIDER METHODS -------------------------
+-----------------------------------------------------------------------------
+
+FUNCTION Verify_Metadata_Sql_Content_ (
+   metadata_version_ IN VARCHAR2 ) RETURN VARCHAR2;
+
+PROCEDURE Verify_Metadata_Plsql_Content_ (
+   metadata_version_ IN VARCHAR2 );
+
+FUNCTION Get_Metadata_Content_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN CLOB;
+
+FUNCTION Get_Metadata_Version_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN VARCHAR2;
+
+FUNCTION Get_Metadata_Category_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN VARCHAR2;
+
+FUNCTION Get_Metadata_Service_Group_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN VARCHAR2;
+
+-----------------------------------------------------------------------------
+------------------------------- GLOBAL METHODS ------------------------------
+-----------------------------------------------------------------------------
+--@PoReadOnly(Do_Get_Price_List_Data)
+FUNCTION Do_Get_Price_List_Data(customer_no_ IN VARCHAR2, quantity_ IN NUMBER, sales_part_no_arr_ IN Sales_Part_Struct_Arr, unbound## IN VARCHAR2) RETURN Price_Struct_Art;
+
+--@PoReadOnly(Rd_Get_Price_Data)
+FUNCTION Rd_Get_Price_Data(sales_part_no_ IN VARCHAR2, customer_no_ IN VARCHAR2, quantity_ IN NUMBER, unbound## IN VARCHAR2) RETURN Price_Struct_Art PIPELINED;
+
+END Pricing_Service_SVC;
+-- [END IFS COMPLETE BLOCK]
+/
+SHOW ERROR
+
+PROMPT Creating Pricing_Service_SVC implementation
+
+-- [IFS COMPLETE BLOCK PACKAGEBODY Pricing_Service_SVC]
+CREATE OR REPLACE PACKAGE BODY Pricing_Service_SVC IS
+
+-----------------------------------------------------------------------------
+---------------------------- PRIVATE DECLARATIONS ---------------------------
+-----------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------
+------------------------- METADATA PROVIDER METHODS -------------------------
+-----------------------------------------------------------------------------
+
+FUNCTION Verify_Metadata_Sql_Content_ (
+   metadata_version_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+BEGIN
+   Verify_Metadata_Plsql_Content_(metadata_version_);
+   RETURN 'OK';
+END Verify_Metadata_Sql_Content_;
+
+
+PROCEDURE Verify_Metadata_Plsql_Content_ (
+   metadata_version_ IN VARCHAR2 )
+IS
+BEGIN
+   IF (metadata_version_ != Get_Metadata_Version_) THEN
+      Raise_Application_Error(-20187, 'OLDMETA: Metadata mismatch, reload with Pricing_Service_SVC.Get_Metadata_Content_ and execute again.');
+   END IF;
+END Verify_Metadata_Plsql_Content_;
+
+
+FUNCTION Get_Metadata_Content_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN CLOB
+IS
+BEGIN
+   IF (context_ IS NULL) THEN
+      RETURN Model_Design_SYS.Get_Data_Content_(Model_Design_SYS.SERVER_METADATA, 'projection', 'PricingService', language_ => Fnd_Session_API.Get_Language);
+   ELSE
+      RETURN Model_Design_SYS.Get_Data_Content_(Model_Design_SYS.SERVER_METADATA, 'projection', 'PricingService', language_ => Fnd_Session_API.Get_Language, scope_id_ => context_);
+   END IF;
+END Get_Metadata_Content_;
+
+
+FUNCTION Get_Metadata_Category_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN VARCHAR2
+IS
+   projection_category_  VARCHAR2(100);
+BEGIN
+   projection_category_ := 'Integration';
+   RETURN projection_category_;
+END Get_Metadata_Category_;
+
+
+FUNCTION Get_Metadata_Service_Group_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN VARCHAR2
+IS
+   projection_service_group_  VARCHAR2(100);
+BEGIN
+   projection_service_group_ := 'Default';
+   RETURN projection_service_group_;
+END Get_Metadata_Service_Group_;
+
+
+FUNCTION Get_Metadata_Version_ (
+   context_ IN VARCHAR2 DEFAULT NULL ) RETURN VARCHAR2
+IS
+BEGIN
+   RETURN Model_Design_SYS.Get_Data_Version_(Model_Design_SYS.SERVER_METADATA, 'projection', 'PricingService');
+END Get_Metadata_Version_;
+
+
+-----------------------------------------------------------------------------
+--------------------- IMPLEMENTATION METHOD DECLARATIONS --------------------
+-----------------------------------------------------------------------------
+
+FUNCTION Get_Objid_From_Etag___ (
+   etag_ IN VARCHAR2 ) RETURN VARCHAR2;
+
+FUNCTION Get_Objversion_From_Etag___ (
+   etag_ IN VARCHAR2 ) RETURN VARCHAR2;
+
+FUNCTION Get_Etag___ (
+   objid_      IN VARCHAR2,
+   objversion_ IN VARCHAR2 ) RETURN VARCHAR2;
+
+FUNCTION Combine_Value_Unit___ (
+   value_ IN VARCHAR2,
+   unit_  IN VARCHAR2 ) RETURN VARCHAR2;
+
+PROCEDURE Cf_CRUD___(
+   lu_name_   IN     VARCHAR2,
+   lu_type_   IN     VARCHAR2,
+   info_         OUT VARCHAR2,
+   objid_     IN     VARCHAR2,
+   attr_cf_   IN OUT NOCOPY VARCHAR2,
+   attr_      IN     VARCHAR2,
+   action_    IN     VARCHAR2,
+   operation_ IN     VARCHAR2);
+
+FUNCTION To_Ret____ (
+   rec_ IN BOOLEAN ) RETURN VARCHAR2;
+
+FUNCTION To_Ret____ (
+   rec_ IN DATE ) RETURN DATE;
+
+FUNCTION To_Ret____ (
+   rec_ IN VARCHAR2 ) RETURN VARCHAR2;
+
+FUNCTION To_Ret____ (
+   rec_ IN CLOB ) RETURN CLOB;
+
+FUNCTION To_Ret____ (
+   rec_ IN BLOB ) RETURN BLOB;
+
+FUNCTION To_Ret____ (
+   rec_ IN Stream_Data_Rec ) RETURN Stream_Data_Ret;
+
+FUNCTION To_Ret____ (
+   arr_ IN Stream_Data_Arr ) RETURN Stream_Data_Art;
+
+FUNCTION To_Ret____ (
+   rec_ IN Price_Struct_Rec ) RETURN Price_Struct_Ret;
+
+FUNCTION To_Ret____ (
+   arr_ IN Price_Struct_Arr ) RETURN Price_Struct_Art;
+
+FUNCTION To_Ret____ (
+   rec_ IN Sales_Part_Struct_Rec ) RETURN Sales_Part_Struct_Ret;
+
+FUNCTION To_Ret____ (
+   arr_ IN Sales_Part_Struct_Arr ) RETURN Sales_Part_Struct_Art;
+
+FUNCTION To_Boolean____ (
+   rec_ IN VARCHAR2 ) RETURN BOOLEAN;
+
+FUNCTION To_Boolean_Arr____ (
+   arr_ IN Text_Arr ) RETURN Boolean_Arr;
+
+FUNCTION Get_Price_List_Data___ (
+   customer_no_ IN VARCHAR2,
+   quantity_ IN NUMBER,
+   sales_part_no_arr_ IN Sales_Part_Struct_Arr) RETURN Price_Struct_Arr;
+
+FUNCTION Get_Price_Data___ (
+   sales_part_no_ IN VARCHAR2,
+   customer_no_ IN VARCHAR2,
+   quantity_ IN NUMBER) RETURN Price_Struct_Rec;
+
+-----------------------------------------------------------------------------
+-------------------- GLOBAL METHODS -----------------------------------------
+-----------------------------------------------------------------------------
+
+--@IgnoreMissingSysinit
+FUNCTION Do_Get_Price_List_Data(customer_no_ IN VARCHAR2, quantity_ IN NUMBER, sales_part_no_arr_ IN Sales_Part_Struct_Arr, unbound## IN VARCHAR2) RETURN Price_Struct_Art
+IS
+   
+   FUNCTION Base(customer_no_ IN VARCHAR2, quantity_ IN NUMBER, sales_part_no_arr_ IN Sales_Part_Struct_Arr, unbound## IN VARCHAR2) RETURN Price_Struct_Art
+   IS
+      arr_ Price_Struct_Arr;
+      art_ Price_Struct_Art := Price_Struct_Art();
+   BEGIN
+      Log_SYS.Init_Method('Pricing_Service_SVC', 'Do_Get_Price_List_Data');
+      arr_ := Get_Price_List_Data___(customer_no_, quantity_, sales_part_no_arr_);
+      art_.extend(arr_.count);
+      IF (arr_.count > 0) THEN
+         FOR i IN arr_.first .. arr_.last LOOP
+            art_(i) := To_Ret____(arr_(i));
+         END LOOP;
+      END IF;
+      RETURN art_;
+   END Base;
+
+BEGIN
+   RETURN Base(customer_no_, quantity_, sales_part_no_arr_, unbound##);
+END Do_Get_Price_List_Data;
+
+
+FUNCTION Rd_Get_Price_Data(sales_part_no_ IN VARCHAR2, customer_no_ IN VARCHAR2, quantity_ IN NUMBER, unbound## IN VARCHAR2) RETURN Price_Struct_Art PIPELINED
+IS
+   rec_ Price_Struct_Rec;
+BEGIN
+   Log_SYS.Init_Method('Pricing_Service_SVC', 'Rd_Get_Price_Data');
+   rec_ := Get_Price_Data___(sales_part_no_, customer_no_, quantity_);
+   PIPE ROW (To_Ret____(rec_));
+END Rd_Get_Price_Data;
+
+
+-----------------------------------------------------------------------------
+-------------------- HELPER METHODS -----------------------------------------
+-----------------------------------------------------------------------------
+
+FUNCTION Get_Objid_From_Etag___ (
+   etag_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+   
+   FUNCTION Base (
+      etag_ IN VARCHAR2 ) RETURN VARCHAR2
+   IS
+      delim_pos_ INTEGER := instr(etag_, ':');
+   BEGIN
+      RETURN substr(etag_, 4, delim_pos_-4);
+   END Base;
+
+BEGIN
+   RETURN Base(etag_);
+END Get_Objid_From_Etag___;
+
+
+FUNCTION Get_Objversion_From_Etag___ (
+   etag_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+   
+   FUNCTION Base (
+      etag_ IN VARCHAR2 ) RETURN VARCHAR2
+   IS
+      delim_pos_ INTEGER := instr(etag_, ':');
+   BEGIN
+      RETURN substr(etag_, delim_pos_+1, length(etag_)-delim_pos_-1);
+   END Base;
+
+BEGIN
+   RETURN Base(etag_);
+END Get_Objversion_From_Etag___;
+
+
+FUNCTION Get_Etag___ (
+   objid_      IN VARCHAR2,
+   objversion_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+   
+   FUNCTION Base (
+      objid_      IN VARCHAR2,
+      objversion_ IN VARCHAR2 ) RETURN VARCHAR2
+   IS
+   BEGIN
+      RETURN 'W/"'||objid_||':'||objversion_||'"';
+   END Base;
+
+BEGIN
+   RETURN Base(objid_, objversion_);
+END Get_Etag___;
+
+
+FUNCTION Combine_Value_Unit___ (
+   value_ IN VARCHAR2,
+   unit_  IN VARCHAR2 ) RETURN VARCHAR2
+IS
+   
+   FUNCTION Base (
+      value_ IN VARCHAR2,
+      unit_  IN VARCHAR2 ) RETURN VARCHAR2
+   IS
+   BEGIN
+      IF (value_ IS NULL) THEN
+         RETURN NULL;
+      ELSE
+         RETURN value_||'|'||unit_;
+      END IF;
+   END Base;
+
+BEGIN
+   RETURN Base(value_, unit_);
+END Combine_Value_Unit___;
+
+
+PROCEDURE Cf_CRUD___(
+   lu_name_   IN     VARCHAR2,
+   lu_type_   IN     VARCHAR2,
+   info_         OUT VARCHAR2,
+   objid_     IN     VARCHAR2,
+   attr_cf_   IN OUT NOCOPY VARCHAR2,
+   attr_      IN     VARCHAR2,
+   action_    IN     VARCHAR2,
+   operation_ IN     VARCHAR2)
+IS
+   
+   PROCEDURE Base(
+      lu_name_   IN     VARCHAR2,
+      lu_type_   IN     VARCHAR2,
+      info_         OUT VARCHAR2,
+      objid_     IN     VARCHAR2,
+      attr_cf_   IN OUT NOCOPY VARCHAR2,
+      attr_      IN     VARCHAR2,
+      action_    IN     VARCHAR2,
+      operation_ IN     VARCHAR2)
+   IS
+   BEGIN
+      Custom_Object_Proxy_SYS.Cf_Crud(lu_name_, lu_type_, info_, objid_, attr_cf_, attr_, action_, operation_);
+   END Base;
+
+BEGIN
+   Base(lu_name_, lu_type_, info_, objid_, attr_cf_, attr_, action_, operation_);
+END Cf_CRUD___;
+
+-----------------------------------------------------------------------------
+-------------------- CONVERSION METHODS -------------------------------------
+-----------------------------------------------------------------------------
+
+FUNCTION To_Ret____ (
+   rec_ IN BOOLEAN ) RETURN VARCHAR2
+IS
+   
+   FUNCTION Base (
+      rec_ IN BOOLEAN ) RETURN VARCHAR2
+   IS
+   BEGIN
+      RETURN (CASE rec_ WHEN TRUE THEN 'TRUE' WHEN FALSE THEN 'FALSE' ELSE NULL END);
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN DATE ) RETURN DATE
+IS
+   
+   FUNCTION Base (
+      rec_ IN DATE ) RETURN DATE
+   IS
+   BEGIN
+      RETURN rec_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN VARCHAR2 ) RETURN VARCHAR2
+IS
+   
+   FUNCTION Base (
+      rec_ IN VARCHAR2 ) RETURN VARCHAR2
+   IS
+   BEGIN
+      RETURN rec_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN CLOB ) RETURN CLOB
+IS
+   
+   FUNCTION Base (
+      rec_ IN CLOB ) RETURN CLOB
+   IS
+   BEGIN
+      RETURN rec_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN BLOB ) RETURN BLOB
+IS
+   
+   FUNCTION Base (
+      rec_ IN BLOB ) RETURN BLOB
+   IS
+   BEGIN
+      RETURN rec_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN Stream_Data_Rec ) RETURN Stream_Data_Ret
+IS
+   
+   FUNCTION Base (
+      rec_ IN Stream_Data_Rec ) RETURN Stream_Data_Ret
+   IS
+      ret_ Stream_Data_Ret;
+   BEGIN
+      ret_.file_name := To_Ret____(rec_.file_name);
+      ret_.mime_type := To_Ret____(rec_.mime_type);
+      ret_.stream_data := To_Ret____(rec_.stream_data);
+      RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   arr_ IN Stream_Data_Arr ) RETURN Stream_Data_Art
+IS
+   
+   FUNCTION Base (
+      arr_ IN Stream_Data_Arr ) RETURN Stream_Data_Art
+   IS
+      ret_ Stream_Data_Art;
+   BEGIN
+         IF (arr_.count > 0) THEN
+            FOR i IN arr_.first .. arr_.last LOOP
+            ret_.extend;
+            ret_(ret_.last) := To_Ret____(arr_(i));
+            END LOOP;
+         END IF;
+         RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(arr_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN Price_Struct_Rec ) RETURN Price_Struct_Ret
+IS
+   
+   FUNCTION Base (
+      rec_ IN Price_Struct_Rec ) RETURN Price_Struct_Ret
+   IS
+      ret_ Price_Struct_Ret;
+   BEGIN
+      ret_.price                          := To_Ret____(rec_.price);
+      ret_.price_source                   := To_Ret____(rec_.price_source);
+      ret_.price_source_id                := To_Ret____(rec_.price_source_id);
+      RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   arr_ IN Price_Struct_Arr ) RETURN Price_Struct_Art
+IS
+   
+   FUNCTION Base (
+      arr_ IN Price_Struct_Arr ) RETURN Price_Struct_Art
+   IS
+      ret_ Price_Struct_Art := Price_Struct_Art();
+   BEGIN
+      IF (arr_.count > 0) THEN
+         FOR i IN arr_.first .. arr_.last LOOP
+         ret_.extend;
+         ret_(ret_.last) := To_Ret____(arr_(i));
+         END LOOP;
+      END IF;
+      RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(arr_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   rec_ IN Sales_Part_Struct_Rec ) RETURN Sales_Part_Struct_Ret
+IS
+   
+   FUNCTION Base (
+      rec_ IN Sales_Part_Struct_Rec ) RETURN Sales_Part_Struct_Ret
+   IS
+      ret_ Sales_Part_Struct_Ret;
+   BEGIN
+      ret_.part_no                        := To_Ret____(rec_.part_no);
+      RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Ret____;
+
+
+FUNCTION To_Ret____ (
+   arr_ IN Sales_Part_Struct_Arr ) RETURN Sales_Part_Struct_Art
+IS
+   
+   FUNCTION Base (
+      arr_ IN Sales_Part_Struct_Arr ) RETURN Sales_Part_Struct_Art
+   IS
+      ret_ Sales_Part_Struct_Art := Sales_Part_Struct_Art();
+   BEGIN
+      IF (arr_.count > 0) THEN
+         FOR i IN arr_.first .. arr_.last LOOP
+         ret_.extend;
+         ret_(ret_.last) := To_Ret____(arr_(i));
+         END LOOP;
+      END IF;
+      RETURN ret_;
+   END Base;
+
+BEGIN
+   RETURN Base(arr_);
+END To_Ret____;
+
+
+FUNCTION To_Boolean____ (
+   rec_ IN VARCHAR2 ) RETURN BOOLEAN
+IS
+   
+   FUNCTION Base (
+      rec_ IN VARCHAR2 ) RETURN BOOLEAN
+   IS
+   
+      FUNCTION Base (
+         rec_ IN VARCHAR2 ) RETURN BOOLEAN
+      IS
+      BEGIN
+         RETURN (CASE rec_ WHEN 'TRUE' THEN TRUE WHEN 'FALSE' THEN FALSE ELSE NULL END);
+      END Base;
+   
+   BEGIN
+      RETURN Base(rec_);
+   END Base;
+
+BEGIN
+   RETURN Base(rec_);
+END To_Boolean____;
+
+
+FUNCTION To_Boolean_Arr____ (
+   arr_ IN Text_Arr ) RETURN Boolean_Arr
+IS
+   
+   FUNCTION Base (
+      arr_ IN Text_Arr ) RETURN Boolean_Arr
+   IS
+   
+      FUNCTION Base (
+         arr_ IN Text_Arr ) RETURN Boolean_Arr
+      IS
+         ret_ Boolean_Arr := Boolean_Arr();
+      BEGIN
+         IF (arr_.count > 0) THEN
+            FOR i IN arr_.first .. arr_.last LOOP
+            ret_.extend;
+            ret_(ret_.last) := To_Boolean____(arr_(i));
+            END LOOP;
+         END IF;
+         RETURN ret_;
+      END Base;
+   
+   BEGIN
+      RETURN Base(arr_);
+   END Base;
+
+BEGIN
+   RETURN Base(arr_);
+END To_Boolean_Arr____;
+
+-----------------------------------------------------------------------------
+-------------------- TOP ----------------------------------------------------
+-----------------------------------------------------------------------------
+
+FUNCTION Get_Price_List_Data___ (
+   customer_no_ IN VARCHAR2,
+   quantity_ IN NUMBER,
+   sales_part_no_arr_ IN Sales_Part_Struct_Arr) RETURN Price_Struct_Arr
+IS
+   
+   FUNCTION Core_Projection_PricingService (
+      customer_no_ IN VARCHAR2,
+      quantity_ IN NUMBER,
+      sales_part_no_arr_ IN Sales_Part_Struct_Arr) RETURN Price_Struct_Arr
+   IS
+      sale_unit_price_           NUMBER;
+      unit_price_incl_tax_       NUMBER;
+      base_sale_unit_price_      NUMBER;
+      base_unit_price_incl_tax_  NUMBER;
+      currency_rate_             NUMBER;
+      discount_                  NUMBER;
+      price_source_              VARCHAR2(10);
+      price_source_id_           VARCHAR2(10);
+      
+      contract_                  VARCHAR2(5);
+      currency_code_             VARCHAR2(3);
+      effective_date_            DATE;
+      agreement_id_              VARCHAR2(10);
+      price_list_no_             VARCHAR2(10);
+      condition_code_            VARCHAR2(10);
+      use_price_incl_tax_        VARCHAR2(5); --FALSE?
+      
+      price_list_ Price_Struct_Arr;
+   BEGIN
+   	contract_ := 'PSG';
+      
+      --Get Currency Code from Customer
+      currency_code_    := Cust_Ord_Customer_API.Get_Currency_Code(customer_no_);
+   
+   
+      effective_date_   := TRUNC(Site_API.Get_Site_Date(contract_));
+      agreement_id_     := Customer_Agreement_API.Get_First_Valid_Agreement(customer_no_, contract_, currency_code_, effective_date_, 'FALSE');
+      use_price_incl_tax_ := Customer_Tax_Calc_Basis_API.Get_Use_Price_Incl_Tax_Db(customer_no_, Site_API.Get_Company(contract_));
+      
+      price_list_ := Price_Struct_Arr();
+      
+      FOR index_ IN sales_part_no_arr_.FIRST..sales_part_no_arr_.LAST LOOP
+   
+         price_list_no_    := Customer_Order_Pricing_API.Get_Valid_Price_List(contract_, sales_part_no_arr_(index_).Part_No, customer_no_, currency_code_);
+      
+         IF (Part_Catalog_API.Get_Condition_Code_Usage_Db(sales_part_no_arr_(index_).Part_No) = 'ALLOW_COND_CODE') THEN 
+            condition_code_ := Condition_Code_API.Get_Default_Condition_Code();
+         END IF;
+         
+         Customer_Order_Pricing_API.Get_Sales_Part_Price_Info(sale_unit_price_,
+                                                           unit_price_incl_tax_,
+                                                           base_sale_unit_price_,
+                                                           base_unit_price_incl_tax_,
+                                                           currency_rate_,
+                                                           discount_,
+                                                           price_source_,
+                                                           price_source_id_,
+                                                           contract_,
+                                                           customer_no_,
+                                                           currency_code_,
+                                                           agreement_id_,
+                                                           sales_part_no_arr_(index_).Part_No,
+                                                           quantity_,
+                                                           price_list_no_,
+                                                           effective_date_,
+                                                           condition_code_,
+                                                           use_price_incl_tax_);
+   
+   
+            price_list_.EXTEND;
+            price_list_(price_list_.LAST).price := sale_unit_price_;
+            price_list_(price_list_.LAST).price_source := price_source_;
+            price_list_(price_list_.LAST).price_source_id := price_source_id_;
+      END LOOP;
+      
+      RETURN price_list_;
+   END Core_Projection_PricingService;
+
+BEGIN
+   RETURN Core_Projection_PricingService(customer_no_, quantity_, sales_part_no_arr_);
+END Get_Price_List_Data___;
+
+
+FUNCTION Get_Price_Data___ (
+   sales_part_no_ IN VARCHAR2,
+   customer_no_ IN VARCHAR2,
+   quantity_ IN NUMBER) RETURN Price_Struct_Rec
+IS
+   
+   FUNCTION Core_Projection_PricingService (
+      sales_part_no_ IN VARCHAR2,
+      customer_no_ IN VARCHAR2,
+      quantity_ IN NUMBER) RETURN Price_Struct_Rec
+   IS
+      sale_unit_price_           NUMBER;
+      unit_price_incl_tax_       NUMBER;
+      base_sale_unit_price_      NUMBER;
+      base_unit_price_incl_tax_  NUMBER;
+      currency_rate_             NUMBER;
+      discount_                  NUMBER;
+      price_source_              VARCHAR2(10);
+      price_source_id_           VARCHAR2(10);
+      
+      contract_                  VARCHAR2(5);
+      currency_code_             VARCHAR2(3);
+      effective_date_            DATE;
+      agreement_id_              VARCHAR2(10);
+      price_list_no_             VARCHAR2(10);
+      condition_code_            VARCHAR2(10);
+      use_price_incl_tax_        VARCHAR2(5); --FALSE?
+      
+      price_rec_                 Price_Struct_Rec;
+   BEGIN
+   	
+      contract_ := 'PSG';
+      
+      --Get Currency Code from Customer
+      currency_code_    := Cust_Ord_Customer_API.Get_Currency_Code(customer_no_);
+   
+   
+      effective_date_   := TRUNC(Site_API.Get_Site_Date(contract_));
+      agreement_id_     := Customer_Agreement_API.Get_First_Valid_Agreement(customer_no_, contract_, currency_code_, effective_date_, 'FALSE');
+   
+      price_list_no_    := Customer_Order_Pricing_API.Get_Valid_Price_List(contract_, sales_part_no_, customer_no_, currency_code_);
+      
+      IF (Part_Catalog_API.Get_Condition_Code_Usage_Db(sales_part_no_) = 'ALLOW_COND_CODE') THEN 
+       condition_code_ := Condition_Code_API.Get_Default_Condition_Code();
+      END IF;
+      
+      use_price_incl_tax_ := Customer_Tax_Calc_Basis_API.Get_Use_Price_Incl_Tax_Db(customer_no_, Site_API.Get_Company(contract_));
+      
+   	Customer_Order_Pricing_API.Get_Sales_Part_Price_Info(sale_unit_price_,
+                                                           unit_price_incl_tax_,
+                                                           base_sale_unit_price_,
+                                                           base_unit_price_incl_tax_,
+                                                           currency_rate_,
+                                                           discount_,
+                                                           price_source_,
+                                                           price_source_id_,
+                                                           contract_,
+                                                           customer_no_,
+                                                           currency_code_,
+                                                           agreement_id_,
+                                                           sales_part_no_,
+                                                           quantity_,
+                                                           price_list_no_,
+                                                           effective_date_,
+                                                           condition_code_,
+                                                           use_price_incl_tax_);
+                                                           
+      price_rec_.price := sale_unit_price_;
+      price_rec_.price_source := price_source_;
+      price_rec_.price_source_id := price_source_id_;
+                                                           
+      RETURN price_rec_;    
+   END Core_Projection_PricingService;
+
+BEGIN
+   RETURN Core_Projection_PricingService(sales_part_no_, customer_no_, quantity_);
+END Get_Price_Data___;
+
+END Pricing_Service_SVC;
+-- [END IFS COMPLETE BLOCK]
+/
+SHOW ERROR
+
+GRANT EXECUTE ON Pricing_Service_SVC TO IFSSYS
+/
+
+-- [IFS COMPLETE BLOCK BEGINEND]
+DECLARE
+   projection_ VARCHAR2(250) := 'PricingService';
+BEGIN
+   Fnd_Projection_API.Create_Or_Replace(projection_, description_ => 'Includes rest end-points for IFS Customer Order Pricing related integrations', categories_ => 'Integration', component_ => 'ORDER', layer_  => 'Core', plsql_package_ => 'PRICING_SERVICE_SVC', api_class_ => 'Standard', deprecated_ => 'FALSE');
+   Fnd_Proj_Action_API.Create_Or_Replace(projection_, 'GetPriceListData');
+
+   COMMIT;
+END;
+-- [END IFS COMPLETE BLOCK]
+/
+
+-----------------------------------------------------------------------------
+-------------------------- REFRESH DICTIONARY CACHE -------------------------
+-----------------------------------------------------------------------------
+
+-- [IFS COMPLETE BLOCK BEGINEND]
+BEGIN
+    Dictionary_SYS.Refresh_Odata_Projection_Cache('PricingService');
+END;
+-- [END IFS COMPLETE BLOCK]
+/

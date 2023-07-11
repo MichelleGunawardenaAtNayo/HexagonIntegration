@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/1.%20DRIVE-D/Nayo/Projects/HexagonIntegration/build/gen/db/order/database/order/PricingService.svc</file>
             <file>file:/C:/1.%20DRIVE-D/Nayo/Projects/HexagonIntegration/workspace/order/source/order/database/CustomerOrderService.plsvc</file>
             <file>file:/C:/1.%20DRIVE-D/Nayo/Projects/HexagonIntegration/workspace/order/source/order/database/WorkOrderService.plsvc</file>
             <file>file:/C:/1.%20DRIVE-D/Nayo/Projects/HexagonIntegration/workspace/order/model/order/CustomerOrderService.projection</file>
+            <file>file:/C:/1.%20DRIVE-D/Nayo/Projects/HexagonIntegration/workspace/order/source/order/database/PricingService.plsvc</file>
             <file>file:/C:/1.%20DRIVE-D/Nayo/Projects/HexagonIntegration/workspace/order/model/order/WorkOrderService.projection</file>
+            <file>file:/C:/1.%20DRIVE-D/Nayo/Projects/HexagonIntegration/workspace/order/model/order/PricingService.projection</file>
         </group>
     </open-files>
 </project-private>
