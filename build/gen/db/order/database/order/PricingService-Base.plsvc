@@ -104,12 +104,14 @@ TYPE Price_Struct_Rec IS RECORD (
 TYPE Price_Struct_Arr IS TABLE OF Price_Struct_Rec;
 
 TYPE Sales_Part_Struct_Ret IS RECORD (
-   part_no                        VARCHAR2(4000));
+   part_no                        VARCHAR2(4000),
+   quantity                       NUMBER);
 
 TYPE Sales_Part_Struct_Art IS TABLE OF Sales_Part_Struct_Ret;
 
 TYPE Sales_Part_Struct_Rec IS RECORD (
-   part_no                        VARCHAR2(4000));
+   part_no                        VARCHAR2(4000),
+   quantity                       NUMBER);
 
 TYPE Sales_Part_Struct_Arr IS TABLE OF Sales_Part_Struct_Rec;
 
@@ -320,6 +322,7 @@ IS
    ret_ Sales_Part_Struct_Ret;
 BEGIN
    ret_.part_no                        := To_Ret____(rec_.part_no);
+   ret_.quantity                       := To_Ret____(rec_.quantity);
    RETURN ret_;
 END To_Ret____;
 
@@ -345,13 +348,13 @@ END To_Ret____;
 
 @Final
 @UncheckedAccess
-FUNCTION Do_Get_Price_List_Data(customer_no_ IN VARCHAR2, quantity_ IN NUMBER, sales_part_no_arr_ IN Sales_Part_Struct_Arr, unbound## IN VARCHAR2) RETURN Price_Struct_Art
+FUNCTION Do_Get_Price_List_Data(customer_no_ IN VARCHAR2, sales_part_no_arr_ IN Sales_Part_Struct_Arr, unbound## IN VARCHAR2) RETURN Price_Struct_Art
 IS
    arr_ Price_Struct_Arr;
    art_ Price_Struct_Art := Price_Struct_Art();
 BEGIN
    Log_SYS.Init_Method('Pricing_Service_SVC', 'Do_Get_Price_List_Data');
-   arr_ := Get_Price_List_Data___(customer_no_, quantity_, sales_part_no_arr_);
+   arr_ := Get_Price_List_Data___(customer_no_, sales_part_no_arr_);
    art_.extend(arr_.count);
    IF (arr_.count > 0) THEN
       FOR i IN arr_.first .. arr_.last LOOP
@@ -364,7 +367,6 @@ END Do_Get_Price_List_Data;
 @ProjectionGenerated
 FUNCTION Get_Price_List_Data___ (
    customer_no_       IN VARCHAR2,
-   quantity_          IN NUMBER,
    sales_part_no_arr_ IN Sales_Part_Struct_Arr ) RETURN Price_Struct_Arr;
 
 @Final

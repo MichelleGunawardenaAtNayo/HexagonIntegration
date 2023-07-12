@@ -31,12 +31,6 @@
                             "Nullable": true
                         },
                         {
-                            "Name": "Quantity",
-                            "DataType": "Number",
-                            "Collection": false,
-                            "Nullable": true
-                        },
-                        {
                             "Name": "SalesPartNoArr",
                             "DataType": "Structure",
                             "SubType": "SalesPartStruct",
@@ -46,18 +40,13 @@
                     ],
                     "Execute": {
                         "PL-SQL": {
-                            "MethodCall": "Pricing_Service_SVC.Do_Get_Price_List_Data(:CustomerNo, :Quantity, :SalesPartNoArr, unbound## => '')",
+                            "MethodCall": "Pricing_Service_SVC.Do_Get_Price_List_Data(:CustomerNo, :SalesPartNoArr, unbound## => '')",
                             "ReturnType": "Pricing_Service_SVC.Price_Struct_Art",
                             "Bind": [
                                 {
                                     "Kind": "Parameter",
                                     "Name": "CustomerNo",
                                     "ImplementationType": "VARCHAR2"
-                                },
-                                {
-                                    "Kind": "Parameter",
-                                    "Name": "Quantity",
-                                    "ImplementationType": "NUMBER"
                                 },
                                 {
                                     "Kind": "Parameter",
@@ -183,6 +172,18 @@
                         "Execute": {
                             "SQL": {
                                 "ImplementationType": "VARCHAR2"
+                            }
+                        }
+                    },
+                    {
+                        "Name": "Quantity",
+                        "DataType": "Number",
+                        "Collection": false,
+                        "Nullable": true,
+                        "AttrName": "QUANTITY",
+                        "Execute": {
+                            "SQL": {
+                                "ImplementationType": "NUMBER"
                             }
                         }
                     }
