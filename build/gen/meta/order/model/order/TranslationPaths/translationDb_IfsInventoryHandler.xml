@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LogicalUnits version="1.0" module="ORDER" type="LU" layer="Core">
+   <LogicalUnit name="IfsInventoryHandler">
+      <Text><![CDATA[Ifs Inventory Handler]]></Text>
+   </LogicalUnit>
+</LogicalUnits>
