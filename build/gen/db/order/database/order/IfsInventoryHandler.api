@@ -1,0 +1,52 @@
+-----------------------------------------------------------------------------
+--
+--  Logical unit: IfsInventoryHandler
+--  Type:         Utility
+--  Component:    ORDER
+--
+--  Template:     3.0
+--  Built by:     IFS Developer Studio
+--
+--  NOTE! Do not edit!! This file is completely generated and will be
+--        overwritten next time the corresponding model is saved.
+-----------------------------------------------------------------------------
+
+PROMPT Creating Ifs_Inventory_Handler_API specification
+
+-- [IFS COMPLETE BLOCK PACKAGE Ifs_Inventory_Handler_API]
+CREATE OR REPLACE PACKAGE Ifs_Inventory_Handler_API IS
+
+module_                   CONSTANT VARCHAR2(6)      := 'ORDER';
+lu_name_                  CONSTANT VARCHAR2(30)     := 'IfsInventoryHandler';
+lu_type_                  CONSTANT VARCHAR2(30)     := 'Utility';
+
+-----------------------------------------------------------------------------
+-------------------- PUBLIC DECLARATIONS ------------------------------------
+-----------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------
+-------------------- LU SPECIFIC PUBLIC METHODS -----------------------------
+-----------------------------------------------------------------------------
+-- Send_Inventory_Sf
+-----------------------------------------------------------------------------
+
+PROCEDURE Send_Inventory_Sf (
+   min_interval_ IN NUMBER);
+
+-----------------------------------------------------------------------------
+-------------------- FOUNDATION1 METHODS ------------------------------------
+-----------------------------------------------------------------------------
+-- Init
+--   Framework method that initializes this package.
+-----------------------------------------------------------------------------
+
+--@PoReadOnly(Init)
+PROCEDURE Init;
+
+END Ifs_Inventory_Handler_API;
+-- [END IFS COMPLETE BLOCK]
+/
+SHOW ERROR
+
+

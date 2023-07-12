@@ -19,11 +19,10 @@ category Integration;
 
 
 ---------------------------------- ACTIONS ----------------------------------
---Get Price data for a multiple salesparts, per customer and quantity
+--Get Price data for a multiple salesparts, per customer
 action GetPriceListData List<Structure(PriceStruct)> {
    initialcheck none;
    parameter CustomerNo Text;
-   parameter Quantity Number;
    parameter SalesPartNoArr List<Structure(SalesPartStruct)>;
 }
 
@@ -45,6 +44,8 @@ structure PriceStruct {
 
 structure SalesPartStruct {
    attribute PartNo Text;
+   attribute Quantity Number;
+
 }
 
 --------------------------------- VIRTUALS ----------------------------------
