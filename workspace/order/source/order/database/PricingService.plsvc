@@ -79,10 +79,8 @@ BEGIN
    RETURN price_rec_;    
 END Get_Price_Data___;
 
-
 FUNCTION Get_Price_List_Data___ (
    customer_no_ IN VARCHAR2,
-   quantity_ IN NUMBER,
    sales_part_no_arr_ IN Sales_Part_Struct_Arr) RETURN Price_Struct_Arr
 IS
    sale_unit_price_           NUMBER;
@@ -104,7 +102,7 @@ IS
    
    price_list_ Price_Struct_Arr;
 BEGIN
-	contract_ := 'PSG';
+		contract_ := 'PSG';
    
    --Get Currency Code from Customer
    currency_code_    := Cust_Ord_Customer_API.Get_Currency_Code(customer_no_);
@@ -137,7 +135,7 @@ BEGIN
                                                         currency_code_,
                                                         agreement_id_,
                                                         sales_part_no_arr_(index_).Part_No,
-                                                        quantity_,
+                                                        sales_part_no_arr_(index_).Quantity,
                                                         price_list_no_,
                                                         effective_date_,
                                                         condition_code_,
