@@ -21,8 +21,8 @@ DECLARE
 BEGIN
    header_ := Model_Design_SYS.Prepare_Design_Data_Load('projection', projection_, Model_Design_SYS.SERVER_METADATA,
       'Includes rest end-points for IFS Customer Order Pricing related integrations');
-   json_ := '{"projection": {"Name": "PricingService","Metadata": {"Version": "[#[generate:version]#]","Description": "Includes rest end-points for IFS Customer Order Pricing related integrations","Category": ["Integration"]},"Container": {"EntitySets": [[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Entityset_Metadata:{"Projection": "PricingService","Lu": []}]#]],"Singletons": [],"Actions": [{"Name": "GetPriceListData","DataType": "Structure","SubType": "PriceStruct","Collection": true,"Parameters": [{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true},{"Name": "SalesPartNoArr","DataType": "Structure","SubType": "SalesPartStruct","Collection": true,"Nullable": true}],"Execute": {"PL-SQL": {"MethodCall": "Pricing_Service_SVC.Do_Get_Price_List_Data(:CustomerNo, :Quantity, :SalesPartNoArr, unbound## => '''')","ReturnType": "Pricing_Service_SVC.Price_Struct_Art","Bind": [{"Kind": "Parameter","Name": "CustomerNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "Quantity","ImplementationType": "NUMBER"},{"Kind": "Parameter","Name": "SalesPartNoArr","ImplementationType": "ARRAY","SubType": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_ARR"}]}}}[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Action_Metadata:{"Projection":"PricingService"}]#]],"Functions": [{"Name": "GetPriceData","DataType": "Structure","SubType": "PriceStruct","Collection": false,"Parameters": [{"Name": "SalesPartNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true}],"Execute": {"SQL": {"From": "TABLE(Pricing_Service_SVC.Rd_Get_Price_Data(:SalesPartNo, :CustomerNo, :Quantity, unbound## => ''''))","Bind": [{"Kind": "Parameter","Name": "SalesPartNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "CustomerNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "Quantity","ImplementationType": "NUMBER"}]}}}]},"Enumerations": [[#[jsoncallback:Custom_Object_Proxy_SYS.Server_Enumeration_Metadata:{"Projection": "PricingService","Lu": []}]#]],"Structures": [{"Name": "PriceStruct","PLSQLRecordName": "PRICING_SERVICE_SVC.PRICE_STRUCT_REC","Attributes": [{"Name": "Price","DataType": "Number","Collection": false,"Nullable": true,"AttrName": "PRICE","Execute": {"SQL": {"Impl';
-   json_ := json_ || 'ementationType": "NUMBER"}}},{"Name": "PriceSource","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE_SOURCE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "PriceSourceId","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE_SOURCE_ID","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}}]},{"Name": "SalesPartStruct","PLSQLRecordName": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_REC","Attributes": [{"Name": "PartNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PART_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}}]},{"Name": "StreamInfoRec","PLSQLRecordName": "PRICING_SERVICE_SVC.STREAM_INFO_REC","Attributes": [{"Name": "FileName","DataType": "Text"},{"Name": "MimeType","DataType": "Text"}]},{"Name": "EntityDec","PLSQLRecordName": "PRICING_SERVICE_SVC.ENTITY_DEC","Attributes": [{"Name": "ETag","DataType": "Text"},{"Name": "Info","DataType": "Text"},{"Name": "Attr","DataType": "Text"}]}[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Structure_Metadata:{"Projection": "PricingService","Lu": []}]#]],"Entities": [[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Entity_Type_Metadata:{"Projection": "PricingService","Lu": []}]#]]}}';
+   json_ := '{"projection": {"Name": "PricingService","Metadata": {"Version": "[#[generate:version]#]","Description": "Includes rest end-points for IFS Customer Order Pricing related integrations","Category": ["Integration"]},"Container": {"EntitySets": [[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Entityset_Metadata:{"Projection": "PricingService","Lu": []}]#]],"Singletons": [],"Actions": [{"Name": "GetPriceListData","DataType": "Structure","SubType": "PriceStruct","Collection": true,"Parameters": [{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "SalesPartNoArr","DataType": "Structure","SubType": "SalesPartStruct","Collection": true,"Nullable": true}],"Execute": {"PL-SQL": {"MethodCall": "Pricing_Service_SVC.Do_Get_Price_List_Data(:CustomerNo, :SalesPartNoArr, unbound## => '''')","ReturnType": "Pricing_Service_SVC.Price_Struct_Art","Bind": [{"Kind": "Parameter","Name": "CustomerNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "SalesPartNoArr","ImplementationType": "ARRAY","SubType": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_ARR"}]}}}[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Action_Metadata:{"Projection":"PricingService"}]#]],"Functions": [{"Name": "GetPriceData","DataType": "Structure","SubType": "PriceStruct","Collection": false,"Parameters": [{"Name": "SalesPartNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true}],"Execute": {"SQL": {"From": "TABLE(Pricing_Service_SVC.Rd_Get_Price_Data(:SalesPartNo, :CustomerNo, :Quantity, unbound## => ''''))","Bind": [{"Kind": "Parameter","Name": "SalesPartNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "CustomerNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "Quantity","ImplementationType": "NUMBER"}]}}}]},"Enumerations": [[#[jsoncallback:Custom_Object_Proxy_SYS.Server_Enumeration_Metadata:{"Projection": "PricingService","Lu": []}]#]],"Structures": [{"Name": "PriceStruct","PLSQLRecordName": "PRICING_SERVICE_SVC.PRICE_STRUCT_REC","Attributes": [{"Name": "Price","DataType": "Number","Collection": false,"Nullable": true,"AttrName": "PRICE","Execute": {"SQL": {"ImplementationType": "NUMBER"}}},{"Name": "PriceSource","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE_SOURCE","Execute": {"SQL": {"Implem';
+   json_ := json_ || 'entationType": "VARCHAR2"}}},{"Name": "PriceSourceId","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE_SOURCE_ID","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}}]},{"Name": "SalesPartStruct","PLSQLRecordName": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_REC","Attributes": [{"Name": "PartNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PART_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true,"AttrName": "QUANTITY","Execute": {"SQL": {"ImplementationType": "NUMBER"}}}]},{"Name": "StreamInfoRec","PLSQLRecordName": "PRICING_SERVICE_SVC.STREAM_INFO_REC","Attributes": [{"Name": "FileName","DataType": "Text"},{"Name": "MimeType","DataType": "Text"}]},{"Name": "EntityDec","PLSQLRecordName": "PRICING_SERVICE_SVC.ENTITY_DEC","Attributes": [{"Name": "ETag","DataType": "Text"},{"Name": "Info","DataType": "Text"},{"Name": "Attr","DataType": "Text"}]}[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Structure_Metadata:{"Projection": "PricingService","Lu": []}]#]],"Entities": [[#[jsoncallback:Custom_Object_Proxy_Sys.Server_Entity_Type_Metadata:{"Projection": "PricingService","Lu": []}]#]]}}';
    Model_Design_SYS.Add_Model_Design_Template(header_, json_);
    COMMIT;
 END;
@@ -36,7 +36,7 @@ DECLARE
    json_       VARCHAR2(32767);
 BEGIN
    header_ := Model_Design_SYS.Prepare_Design_Data_Load('projection', projection_, Model_Design_SYS.CLIENT_METADATA, '');
-   json_ := '{"name": "PricingService","service": "PricingService.svc","version": "-1113275670","contains": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entityset_Metadata:{"Projection": "PricingService","Lu": []}]#]},"enumerations": {[#[jsoncallback:Custom_Object_Proxy_SYS.Client_Enumeration_Metadata:{"Projection": "PricingService","Lu": []}]#]},"entities": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entity_Type_Metadata:{"Projection": "PricingService","Lu": []}]#]},"structures": {"PriceStruct": {"name": "PriceStruct","attributes": {"Price": {"datatype": "Number","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"PriceSource": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"PriceSourceId": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false}},"references": {},"arrays": {}},"SalesPartStruct": {"name": "SalesPartStruct","attributes": {"PartNo": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false}},"references": {},"arrays": {}}},"actions": {"GetPriceListData": {"name": "GetPriceListData","ludependencies": [],"returnType": {"dataType": "Structure","subType": "PriceStruct","collection": true},"parameters": [{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true},{"Name": "SalesPartNoArr","DataType": "Structure","SubType": "SalesPartStruct","Collection": true,"Nullable": true}]}[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Action_Metadata:{"Projection": "PricingService"}]#]},"functions": {"GetPriceData": {"name": "GetPriceData","ludependencies": [],"parameters": [{"Name": "SalesPartNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true}]}},"objectconnections": [#[metacallback:Dynamic_Reference_Metadata_API.Get_Json_Entities_:]#]}';
+   json_ := '{"name": "PricingService","service": "PricingService.svc","version": "-1740901085","contains": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entityset_Metadata:{"Projection": "PricingService","Lu": []}]#]},"enumerations": {[#[jsoncallback:Custom_Object_Proxy_SYS.Client_Enumeration_Metadata:{"Projection": "PricingService","Lu": []}]#]},"entities": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entity_Type_Metadata:{"Projection": "PricingService","Lu": []}]#]},"structures": {"PriceStruct": {"name": "PriceStruct","attributes": {"Price": {"datatype": "Number","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"PriceSource": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"PriceSourceId": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false}},"references": {},"arrays": {}},"SalesPartStruct": {"name": "SalesPartStruct","attributes": {"PartNo": {"datatype": "Text","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false},"Quantity": {"datatype": "Number","required": false,"editable": true,"updatable": true,"insertable": true,"unbound": false,"multiselect": false}},"references": {},"arrays": {}}},"actions": {"GetPriceListData": {"name": "GetPriceListData","ludependencies": [],"returnType": {"dataType": "Structure","subType": "PriceStruct","collection": true},"parameters": [{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "SalesPartNoArr","DataType": "Structure","SubType": "SalesPartStruct","Collection": true,"Nullable": true}]}[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Action_Metadata:{"Projection": "PricingService"}]#]},"functions": {"GetPriceData": {"name": "GetPriceData","ludependencies": [],"parameters": [{"Name": "SalesPartNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true}]}},"objectconnections": [#[metacallback:Dynamic_Reference_Metadata_API.Get_Json_Entities_:]#]}';
    Model_Design_SYS.Add_Model_Design_Template(header_, json_);
    COMMIT;
 END;
@@ -50,8 +50,8 @@ DECLARE
    json_       VARCHAR2(32767);
 BEGIN
    header_ := Model_Design_SYS.Prepare_Doc_Load('projection', projection_, Model_Design_SYS.SERVER_METADATA, 'Includes rest end-points for IFS Customer Order Pricing related integrations');
-   json_ := '{"projection": {"Name": "PricingService","Metadata": {"Version": "[#[generate:version]#]","Description": "Includes rest end-points for IFS Customer Order Pricing related integrations","Category": ["Integration"]},"Container": {"EntitySets": [],"Singletons": [],"Actions": [{"Name": "GetPriceListData","DataType": "Structure","SubType": "PriceStruct","Collection": true,"Parameters": [{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true},{"Name": "SalesPartNoArr","DataType": "Structure","SubType": "SalesPartStruct","Collection": true,"Nullable": true}],"Execute": {"PL-SQL": {"MethodCall": "Pricing_Service_SVC.Do_Get_Price_List_Data(:CustomerNo, :Quantity, :SalesPartNoArr, unbound## => '''')","ReturnType": "Pricing_Service_SVC.Price_Struct_Art","Bind": [{"Kind": "Parameter","Name": "CustomerNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "Quantity","ImplementationType": "NUMBER"},{"Kind": "Parameter","Name": "SalesPartNoArr","ImplementationType": "ARRAY","SubType": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_ARR"}]}}}],"Functions": [{"Name": "GetPriceData","DataType": "Structure","SubType": "PriceStruct","Collection": false,"Parameters": [{"Name": "SalesPartNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true}],"Execute": {"SQL": {"From": "TABLE(Pricing_Service_SVC.Rd_Get_Price_Data(:SalesPartNo, :CustomerNo, :Quantity, unbound## => ''''))","Bind": [{"Kind": "Parameter","Name": "SalesPartNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "CustomerNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "Quantity","ImplementationType": "NUMBER"}]}}}]},"Enumerations": [],"Structures": [{"Name": "PriceStruct","PLSQLRecordName": "PRICING_SERVICE_SVC.PRICE_STRUCT_REC","Attributes": [{"Name": "Price","DataType": "Number","Collection": false,"Nullable": true,"AttrName": "PRICE","Execute": {"SQL": {"ImplementationType": "NUMBER"}}},{"Name": "PriceSource","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE_SOURCE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "PriceSourceId","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE_SOURCE_ID","Execute": {"SQL"';
-   json_ := json_ || ': {"ImplementationType": "VARCHAR2"}}}]},{"Name": "SalesPartStruct","PLSQLRecordName": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_REC","Attributes": [{"Name": "PartNo","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PART_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}}]},{"Name": "StreamInfoRec","PLSQLRecordName": "PRICING_SERVICE_SVC.STREAM_INFO_REC","Attributes": [{"Name": "FileName","DataType": "Text"},{"Name": "MimeType","DataType": "Text"}]},{"Name": "EntityDec","PLSQLRecordName": "PRICING_SERVICE_SVC.ENTITY_DEC","Attributes": [{"Name": "ETag","DataType": "Text"},{"Name": "Info","DataType": "Text"},{"Name": "Attr","DataType": "Text"}]}],"Entities": []}}';
+   json_ := '{"projection": {"Name": "PricingService","Metadata": {"Version": "[#[generate:version]#]","Description": "Includes rest end-points for IFS Customer Order Pricing related integrations","Category": ["Integration"]},"Container": {"EntitySets": [],"Singletons": [],"Actions": [{"Name": "GetPriceListData","DataType": "Structure","SubType": "PriceStruct","Collection": true,"Parameters": [{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "SalesPartNoArr","DataType": "Structure","SubType": "SalesPartStruct","Collection": true,"Nullable": true}],"Execute": {"PL-SQL": {"MethodCall": "Pricing_Service_SVC.Do_Get_Price_List_Data(:CustomerNo, :SalesPartNoArr, unbound## => '''')","ReturnType": "Pricing_Service_SVC.Price_Struct_Art","Bind": [{"Kind": "Parameter","Name": "CustomerNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "SalesPartNoArr","ImplementationType": "ARRAY","SubType": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_ARR"}]}}}],"Functions": [{"Name": "GetPriceData","DataType": "Structure","SubType": "PriceStruct","Collection": false,"Parameters": [{"Name": "SalesPartNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "CustomerNo","DataType": "Text","Collection": false,"Nullable": true},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true}],"Execute": {"SQL": {"From": "TABLE(Pricing_Service_SVC.Rd_Get_Price_Data(:SalesPartNo, :CustomerNo, :Quantity, unbound## => ''''))","Bind": [{"Kind": "Parameter","Name": "SalesPartNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "CustomerNo","ImplementationType": "VARCHAR2"},{"Kind": "Parameter","Name": "Quantity","ImplementationType": "NUMBER"}]}}}]},"Enumerations": [],"Structures": [{"Name": "PriceStruct","PLSQLRecordName": "PRICING_SERVICE_SVC.PRICE_STRUCT_REC","Attributes": [{"Name": "Price","DataType": "Number","Collection": false,"Nullable": true,"AttrName": "PRICE","Execute": {"SQL": {"ImplementationType": "NUMBER"}}},{"Name": "PriceSource","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE_SOURCE","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "PriceSourceId","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PRICE_SOURCE_ID","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}}]},{"Name": "SalesPartStruct","PLSQLRecordName": "PRICING_SERVICE_SVC.SALES_PART_STRUCT_REC","Attributes": [{"Name": "PartNo';
+   json_ := json_ || '","DataType": "Text","Collection": false,"Nullable": true,"AttrName": "PART_NO","Execute": {"SQL": {"ImplementationType": "VARCHAR2"}}},{"Name": "Quantity","DataType": "Number","Collection": false,"Nullable": true,"AttrName": "QUANTITY","Execute": {"SQL": {"ImplementationType": "NUMBER"}}}]},{"Name": "StreamInfoRec","PLSQLRecordName": "PRICING_SERVICE_SVC.STREAM_INFO_REC","Attributes": [{"Name": "FileName","DataType": "Text"},{"Name": "MimeType","DataType": "Text"}]},{"Name": "EntityDec","PLSQLRecordName": "PRICING_SERVICE_SVC.ENTITY_DEC","Attributes": [{"Name": "ETag","DataType": "Text"},{"Name": "Info","DataType": "Text"},{"Name": "Attr","DataType": "Text"}]}],"Entities": []}}';
    Model_Design_SYS.Add_Model_Api_Doc_Template(header_, json_);
    COMMIT;
 END;
@@ -193,12 +193,14 @@ TYPE Price_Struct_Rec IS RECORD (
 TYPE Price_Struct_Arr IS TABLE OF Price_Struct_Rec;
 
 TYPE Sales_Part_Struct_Ret IS RECORD (
-   part_no                        VARCHAR2(4000));
+   part_no                        VARCHAR2(4000),
+   quantity                       NUMBER);
 
 TYPE Sales_Part_Struct_Art IS TABLE OF Sales_Part_Struct_Ret;
 
 TYPE Sales_Part_Struct_Rec IS RECORD (
-   part_no                        VARCHAR2(4000));
+   part_no                        VARCHAR2(4000),
+   quantity                       NUMBER);
 
 TYPE Sales_Part_Struct_Arr IS TABLE OF Sales_Part_Struct_Rec;
 
@@ -229,7 +231,7 @@ FUNCTION Get_Metadata_Service_Group_ (
 ------------------------------- GLOBAL METHODS ------------------------------
 -----------------------------------------------------------------------------
 --@PoReadOnly(Do_Get_Price_List_Data)
-FUNCTION Do_Get_Price_List_Data(customer_no_ IN VARCHAR2, quantity_ IN NUMBER, sales_part_no_arr_ IN Sales_Part_Struct_Arr, unbound## IN VARCHAR2) RETURN Price_Struct_Art;
+FUNCTION Do_Get_Price_List_Data(customer_no_ IN VARCHAR2, sales_part_no_arr_ IN Sales_Part_Struct_Arr, unbound## IN VARCHAR2) RETURN Price_Struct_Art;
 
 --@PoReadOnly(Rd_Get_Price_Data)
 FUNCTION Rd_Get_Price_Data(sales_part_no_ IN VARCHAR2, customer_no_ IN VARCHAR2, quantity_ IN NUMBER, unbound## IN VARCHAR2) RETURN Price_Struct_Art PIPELINED;
@@ -381,7 +383,6 @@ FUNCTION To_Boolean_Arr____ (
 
 FUNCTION Get_Price_List_Data___ (
    customer_no_ IN VARCHAR2,
-   quantity_ IN NUMBER,
    sales_part_no_arr_ IN Sales_Part_Struct_Arr) RETURN Price_Struct_Arr;
 
 FUNCTION Get_Price_Data___ (
@@ -394,16 +395,16 @@ FUNCTION Get_Price_Data___ (
 -----------------------------------------------------------------------------
 
 --@IgnoreMissingSysinit
-FUNCTION Do_Get_Price_List_Data(customer_no_ IN VARCHAR2, quantity_ IN NUMBER, sales_part_no_arr_ IN Sales_Part_Struct_Arr, unbound## IN VARCHAR2) RETURN Price_Struct_Art
+FUNCTION Do_Get_Price_List_Data(customer_no_ IN VARCHAR2, sales_part_no_arr_ IN Sales_Part_Struct_Arr, unbound## IN VARCHAR2) RETURN Price_Struct_Art
 IS
    
-   FUNCTION Base(customer_no_ IN VARCHAR2, quantity_ IN NUMBER, sales_part_no_arr_ IN Sales_Part_Struct_Arr, unbound## IN VARCHAR2) RETURN Price_Struct_Art
+   FUNCTION Base(customer_no_ IN VARCHAR2, sales_part_no_arr_ IN Sales_Part_Struct_Arr, unbound## IN VARCHAR2) RETURN Price_Struct_Art
    IS
       arr_ Price_Struct_Arr;
       art_ Price_Struct_Art := Price_Struct_Art();
    BEGIN
       Log_SYS.Init_Method('Pricing_Service_SVC', 'Do_Get_Price_List_Data');
-      arr_ := Get_Price_List_Data___(customer_no_, quantity_, sales_part_no_arr_);
+      arr_ := Get_Price_List_Data___(customer_no_, sales_part_no_arr_);
       art_.extend(arr_.count);
       IF (arr_.count > 0) THEN
          FOR i IN arr_.first .. arr_.last LOOP
@@ -414,7 +415,7 @@ IS
    END Base;
 
 BEGIN
-   RETURN Base(customer_no_, quantity_, sales_part_no_arr_, unbound##);
+   RETURN Base(customer_no_, sales_part_no_arr_, unbound##);
 END Do_Get_Price_List_Data;
 
 
@@ -715,6 +716,7 @@ IS
       ret_ Sales_Part_Struct_Ret;
    BEGIN
       ret_.part_no                        := To_Ret____(rec_.part_no);
+      ret_.quantity                       := To_Ret____(rec_.quantity);
       RETURN ret_;
    END Base;
 
@@ -806,13 +808,11 @@ END To_Boolean_Arr____;
 
 FUNCTION Get_Price_List_Data___ (
    customer_no_ IN VARCHAR2,
-   quantity_ IN NUMBER,
    sales_part_no_arr_ IN Sales_Part_Struct_Arr) RETURN Price_Struct_Arr
 IS
    
    FUNCTION Core_Projection_PricingService (
       customer_no_ IN VARCHAR2,
-      quantity_ IN NUMBER,
       sales_part_no_arr_ IN Sales_Part_Struct_Arr) RETURN Price_Struct_Arr
    IS
       sale_unit_price_           NUMBER;
@@ -834,7 +834,7 @@ IS
       
       price_list_ Price_Struct_Arr;
    BEGIN
-   	contract_ := 'PSG';
+   		contract_ := 'PSG';
       
       --Get Currency Code from Customer
       currency_code_    := Cust_Ord_Customer_API.Get_Currency_Code(customer_no_);
@@ -867,7 +867,7 @@ IS
                                                            currency_code_,
                                                            agreement_id_,
                                                            sales_part_no_arr_(index_).Part_No,
-                                                           quantity_,
+                                                           sales_part_no_arr_(index_).Quantity,
                                                            price_list_no_,
                                                            effective_date_,
                                                            condition_code_,
@@ -884,7 +884,7 @@ IS
    END Core_Projection_PricingService;
 
 BEGIN
-   RETURN Core_Projection_PricingService(customer_no_, quantity_, sales_part_no_arr_);
+   RETURN Core_Projection_PricingService(customer_no_, sales_part_no_arr_);
 END Get_Price_List_Data___;
 
 

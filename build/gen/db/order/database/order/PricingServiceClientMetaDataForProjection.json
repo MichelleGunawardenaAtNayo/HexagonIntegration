@@ -1,7 +1,7 @@
 {
     "name": "PricingService",
     "service": "PricingService.svc",
-    "version": "-1113275670",
+    "version": "-1740901085",
     "contains": {[#[jsoncallback:Custom_Object_Proxy_Sys.Client_Entityset_Metadata:{
     "Projection": "PricingService",
     "Lu": [
@@ -68,6 +68,15 @@
                     "insertable": true,
                     "unbound": false,
                     "multiselect": false
+                },
+                "Quantity": {
+                    "datatype": "Number",
+                    "required": false,
+                    "editable": true,
+                    "updatable": true,
+                    "insertable": true,
+                    "unbound": false,
+                    "multiselect": false
                 }
             },
             "references": {
@@ -90,12 +99,6 @@
                 {
                     "Name": "CustomerNo",
                     "DataType": "Text",
-                    "Collection": false,
-                    "Nullable": true
-                },
-                {
-                    "Name": "Quantity",
-                    "DataType": "Number",
                     "Collection": false,
                     "Nullable": true
                 },
