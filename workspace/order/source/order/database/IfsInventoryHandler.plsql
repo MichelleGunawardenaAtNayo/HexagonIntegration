@@ -77,9 +77,12 @@ BEGIN
   
   json_ := json_array_.stringify();
   
-  plsql_rest_sender_API.Call_Rest_EndPoint2(rest_service_ => 'SEND_INVENTORY_SF',
+  IF json_ <> '[]' THEN
+   plsql_rest_sender_API.Call_Rest_EndPoint2(rest_service_ => 'SEND_INVENTORY_SF',
                                             xml_          => json_,
                                             http_method_  => 'POST');
+                                            
+  END IF;                                          
 END Send_Inventory_Sf;
 
 -------------------- LU  NEW METHODS -------------------------------------
