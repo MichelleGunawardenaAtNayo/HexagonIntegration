@@ -163,6 +163,12 @@ BEGIN
       Client_SYS.Add_To_Attr('PRICE_SOURCE_DB', price_source_db_, attr_);
       Customer_Order_Line_API.New__(line_info_, line_objid_, line_objversion_, attr_, 'DO');
       
+      --Custom Fields
+      Client_SYS.Clear_Attr(attr_);
+      Customer_Order_Line_CFP.Cf_New__(line_info_, line_objid_, attr_, '', 'PREPARE');   
+      Client_SYS.Add_To_Attr('CF$_ORDER_LINE_FROM', 'Salesforce', attr_);
+      Customer_Order_Line_CFP.Cf_New__(line_info_, line_objid_, attr_, '', 'DO');
+      
    END LOOP;
 
    RETURN order_no_;

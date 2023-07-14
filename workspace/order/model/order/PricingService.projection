@@ -20,7 +20,7 @@ category Integration;
 
 ---------------------------------- ACTIONS ----------------------------------
 --Get Price data for a multiple salesparts, per customer
-action GetPriceListData List<Structure(PriceStruct)> {
+action GetPriceListData List<Structure(PriceStructs)> {
    initialcheck none;
    parameter CustomerNo Text;
    parameter SalesPartNoArr List<Structure(SalesPartStruct)>;
@@ -36,6 +36,14 @@ function GetPriceData Structure(PriceStruct) {
 }
 
 -------------------------------- STRUCTURES ---------------------------------
+
+structure PriceStructs {
+   attribute PartNo Text;
+   attribute Price Number;
+   attribute PriceSource Text;
+   attribute PriceSourceId Text;
+}
+
 structure PriceStruct {
    attribute Price Number;
    attribute PriceSource Text;
