@@ -81,7 +81,7 @@ END Get_Price_Data___;
 
 FUNCTION Get_Price_List_Data___ (
    customer_no_ IN VARCHAR2,
-   sales_part_no_arr_ IN Sales_Part_Struct_Arr) RETURN Price_Struct_Arr
+   sales_part_no_arr_ IN Sales_Part_Struct_Arr) RETURN Price_Structs_Arr
 IS
    sale_unit_price_           NUMBER;
    unit_price_incl_tax_       NUMBER;
@@ -100,9 +100,9 @@ IS
    condition_code_            VARCHAR2(10);
    use_price_incl_tax_        VARCHAR2(5); --FALSE?
    
-   price_list_ Price_Struct_Arr;
+   price_list_ Price_Structs_Arr;
 BEGIN
-		contract_ := 'PSG';
+			contract_ := 'PSG';
    
    --Get Currency Code from Customer
    currency_code_    := Cust_Ord_Customer_API.Get_Currency_Code(customer_no_);
@@ -112,7 +112,7 @@ BEGIN
    agreement_id_     := Customer_Agreement_API.Get_First_Valid_Agreement(customer_no_, contract_, currency_code_, effective_date_, 'FALSE');
    use_price_incl_tax_ := Customer_Tax_Calc_Basis_API.Get_Use_Price_Incl_Tax_Db(customer_no_, Site_API.Get_Company(contract_));
    
-   price_list_ := Price_Struct_Arr();
+   price_list_ := Price_Structs_Arr();
    
    FOR index_ IN sales_part_no_arr_.FIRST..sales_part_no_arr_.LAST LOOP
 
@@ -143,6 +143,7 @@ BEGIN
 
 
          price_list_.EXTEND;
+         price_list_(price_list_.LAST).part_no := sales_part_no_arr_(index_).Part_No;
          price_list_(price_list_.LAST).price := sale_unit_price_;
          price_list_(price_list_.LAST).price_source := price_source_;
          price_list_(price_list_.LAST).price_source_id := price_source_id_;
